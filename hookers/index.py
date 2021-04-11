@@ -19,5 +19,5 @@ with open(os.path.dirname(__file__) + '/config.json') as f:
 
 for feed in config['feeds']:
     # spin off new thread eventually
-    #feeditem = FeedItem(feed)
-    #feeditem.get_feed().save()
+    feeditem = FeedItem(feed)
+    feeditem.get_feed().save()

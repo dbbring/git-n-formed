@@ -4,15 +4,8 @@
       "channels": [
         "free-security"
       ],
-      "url": "https://blog.includesecurity.com/feed/",
-      "type": "rss"
-    },
-    {
-      "channels": [
-        "free-security"
-      ],
-      "url": "",
-      "type": "rss"
+      "url": "#bugbountytips",
+      "type": "twitter"
     }
   ]
 }

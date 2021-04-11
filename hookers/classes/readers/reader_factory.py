@@ -1,5 +1,6 @@
 from .reader_abstract import ReaderAbstract
 from .rss_reader import RSSReader
+from .twitter_reader import TwitterReader
 
 
 class FactoryReaderNotFoundException(Exception):
@@ -10,7 +11,8 @@ class ReaderFactory():
 
     reader: ReaderAbstract = None
     readers = {
-        'rss': RSSReader
+        'rss': RSSReader,
+        'twitter': TwitterReader
     }
 
     def __init__(self, type: str):
