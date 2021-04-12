@@ -9,7 +9,7 @@ from .reader_abstract import ReaderAbstract
 from ..post_items.post_item import PostItem
 
 
-class FacebookReader(ReaderAbstract):
+class LinkedinReader(ReaderAbstract):
 
     MAX_RSS_ENTRIES: final = 10
     # List[content_items] content items being whatever native structure the reader gets
