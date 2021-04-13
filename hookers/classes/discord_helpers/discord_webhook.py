@@ -5,7 +5,6 @@ from discord import Webhook, RequestsWebhookAdapter
 from dotenv import load_dotenv
 # Custom Modules
 from ..post_items.post_item import PostItem
-from .discord_globals import DiscordGlobals
 
 
 class DiscordWebhook(object):
@@ -91,19 +90,10 @@ class DiscordWebhook(object):
         self._exisiting_links = DiscordGlobals().existing_links_global
         return
 
-    def _build_msg(self, post_item: PostItem) -> str:
-        msg = post_item.content + '\n\n' + post_item.link
-        return msg
+    def _build_msg(self, post: PostItem):
+        return post.content + ' \n\n  ' + post.link
 
-    def _is_new_link(self, link: str) -> bool:
-        channel_links = self._exisiting_links[self._channel]
-
-        for channel_link in channel_links:
-            if len(channel_link) == len(link) and channel_link != link:
-                return True
-        return False
-
-    def post(self, post_item: PostItem) -> None:
+    def post(self, post_item: PostItem):
         if self._webhook is not None:
-            if self._is_new_link(post_item.link):
-                self._webhook.send(self._build_msg(post_item))
+            msg = self._build_msg(post_item)
+            self._webhook.send(content=msg, embed=post_item.embed)
