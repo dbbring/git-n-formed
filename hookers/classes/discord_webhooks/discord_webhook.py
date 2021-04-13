@@ -2,6 +2,8 @@ import os
 from typing import final
 from discord import Webhook, RequestsWebhookAdapter
 from dotenv import load_dotenv
+# Custom Modules
+from ..post_items.post_item import PostItem
 
 
 class DiscordWebhook(object):
@@ -82,6 +84,10 @@ class DiscordWebhook(object):
             self._routes[channel]['id'], self._routes[channel]['token'], adapter=RequestsWebhookAdapter())
         return
 
-    def post(self, msg: str):
+    def _build_msg(self, post: PostItem):
+        return post.content + ' \n\n  ' + post.link
+
+    def post(self, post_item: PostItem):
         if self._webhook is not None:
-            self._webhook.send(msg)
+            msg = self._build_msg(post_item)
+            self._webhook.send(content=msg, embed=post_item.embed)
