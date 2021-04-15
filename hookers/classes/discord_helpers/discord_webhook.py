@@ -87,7 +87,6 @@ class DiscordWebhook(object):
 
         self._webhook = Webhook.partial(
             self._routes[channel]['id'], self._routes[channel]['token'], adapter=RequestsWebhookAdapter())
-        self._exisiting_links = DiscordGlobals().existing_links_global
         return
 
     def _build_msg(self, post: PostItem):
