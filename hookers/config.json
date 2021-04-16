@@ -4,8 +4,11 @@
       "channels": [
         "free-security"
       ],
-      "url": "progamming",
-      "type": "reddit"
+      "url": "programming",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5
+      }
     }
   ],
   "ads": []

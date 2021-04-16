@@ -12,6 +12,9 @@ class RedditReader(ReaderAbstract):
 
     __reddit_api = None
     post_items = []
+    properties = {
+        "ups": 0
+    }
     
     def __init__(self):
         super().__init__()
@@ -28,8 +31,7 @@ class RedditReader(ReaderAbstract):
 
     def fetch(self, url:str):
         subreddit = self.__reddit_api.subreddit(url)
-        for sub in subreddit.new(limit=10):
-            # check ups for up votes remove spam
-            # check content for urls maybe we have already hit up a link to that
-            print(sub.title)
+        for sub in subreddit.new(limit=100):
+            if sub.ups >= self.properties["ups"]:
+                print(sub.title)
         return

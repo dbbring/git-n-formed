@@ -20,6 +20,7 @@ class TwitterReader(ReaderAbstract):
     post_items = []
     # List[content_items] content items being whatever native structure the reader gets
     _content_list: list = []
+    properties = {}
 
     def __init__(self):
         load_dotenv()

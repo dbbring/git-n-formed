@@ -15,8 +15,13 @@ class FeedItem(object):
         self._webhooks = []
         self._feed = feed
         self._reader = ReaderFactory(self._feed['type']).reader
+
+        for prop in self._feed["type_properties"].keys():
+            self._reader.properties[prop] = self._feed["type_properties"][prop]
+
         for channel in self._feed['channels']:
             self._webhooks.append(DiscordWebhook(channel))
+
         return
 
     def _post_to_discord(self, post_item: PostItem):
