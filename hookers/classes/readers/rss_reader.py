@@ -16,6 +16,7 @@ class RSSReader(ReaderAbstract):
     _content_list: list = []
     # List[PostItem]
     post_items: list = []
+    properties = {}
 
     def __init__(self):
         self._content_list = []

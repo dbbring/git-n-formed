@@ -2,10 +2,13 @@
   "feeds": [
     {
       "channels": [
-        "free-security"
+        "supporter-dev"
       ],
-      "url": "#bugbountytips",
-      "type": "twitter"
+      "url": "programming",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5
+      }
     }
   ],
   "ads": []

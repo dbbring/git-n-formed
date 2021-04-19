@@ -10,6 +10,8 @@ feedparser==6.0.2
 idna==2.10
 multidict==5.1.0
 oauthlib==3.1.0
+praw==7.2.0
+prawcore==2.0.0
 pycodestyle==2.7.0
 PySocks==1.7.1
 python-dotenv==0.17.0
@@ -20,5 +22,7 @@ six==1.15.0
 toml==0.10.2
 tweepy==3.10.0
 typing-extensions==3.7.4.3
+update-checker==0.18.0
 urllib3==1.26.4
+websocket-client==0.58.0
 yarl==1.6.3
