@@ -2,14 +2,19 @@
 import praw
 import os
 from dotenv import load_dotenv
+import datetime
 # Custom Modules
 from .reader_abstract import ReaderAbstract
+from ..post_items.post_item import PostItem
+
+
 class NotAuthenticatedRedditExcpetion(Exception):
     pass
 
 
 class RedditReader(ReaderAbstract):
 
+    MAX_REDDIT_COMMENTS = 25
     __api = None
     # List[Post_Items]
     post_items = []
@@ -18,7 +23,7 @@ class RedditReader(ReaderAbstract):
     properties = {
         "ups": 0
     }
-    
+
     def __init__(self):
         super().__init__()
         load_dotenv()
@@ -31,33 +36,32 @@ class RedditReader(ReaderAbstract):
 
     def __is_current_content(self, unix_datetime: float) -> bool:
         today = datetime.date.today()
-        post_date = datetime.fromtimestamp(unix_datetime).date()
+        post_date = datetime.datetime.fromtimestamp(unix_datetime).date()
 
         if today == post_date:
             return True
 
         return False
 
-    def __get_latest_content(self) -> int:
+    def __get_latest_content(self) -> None:
         for content in self._content_list:
             if content.ups >= self.properties["ups"]:
-                if self.__is_current_content(content.created_at):
+                if self.__is_current_content(content.created):
                     self.post_items.append(
                         self._to_post_item(content))
-        return len(self._content_list)
+        return
 
     def _to_post_item(self, content):
-        return PostItem(content='', link=content.short_url)
+        return PostItem(content='', link='https://www.reddit.com'+content.permalink)
 
     def _is_valid_link(self, link: str) -> bool:
-        isValid = False
 
         # additional checks here like already posted in chan
 
-        if link != '':
-            isValid = True
+        if link == '':
+            return False
 
-        return isValid
+        return True
 
     def _parse_content(self):
         self.__get_latest_content()
@@ -65,8 +69,9 @@ class RedditReader(ReaderAbstract):
             if self._is_valid_link(post.link) == False:
                 self.post_items.pop(index)
         return
-    def fetch(self, url:str):
+
+    def fetch(self, url: str):
         subreddit = self.__api.subreddit(url)
-        self._content_list = subreddit.new(limit=100):
-        self._parse_content
+        self._content_list = subreddit.new(limit=self.MAX_REDDIT_COMMENTS)
+        self._parse_content()
         return self

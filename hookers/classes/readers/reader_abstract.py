@@ -22,6 +22,6 @@ class ReaderAbstract(ABC):
         raise NotImplementedError()
 
     @abstractmethod
-    def fetch(self, url: str) -> self:
+    def fetch(self, url: str):
         # should populate post_items
         raise NotImplementedError()
