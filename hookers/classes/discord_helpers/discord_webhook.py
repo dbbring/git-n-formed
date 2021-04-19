@@ -98,8 +98,9 @@ class DiscordRoutes(object):
         return int(self._channels[channel]['chan_id'])
 
 
-class DiscordWebhook(DiscordRoutes):
+class DiscordWebhook(object):
 
+    _routes: DiscordRoutes = None
     _channel: str = ''
     _webhook: Webhook = None
 
@@ -107,9 +108,9 @@ class DiscordWebhook(DiscordRoutes):
         if len(channel) == 0:
             return
 
-        super().__init__()
+        _routes = DiscordRoutes()
         self._webhook = Webhook.partial(
-            super()._channels[channel]['id'], super()._channels[channel]['token'], adapter=RequestsWebhookAdapter())
+            _routes._channels[channel]['id'], _routes._channels[channel]['token'], adapter=RequestsWebhookAdapter())
         return
 
     def _build_msg(self, post: PostItem):

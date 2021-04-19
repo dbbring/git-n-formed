@@ -8,8 +8,8 @@ from classes.discord_helpers.discord_api_client import DiscordAPIClient
 
 
 load_dotenv()
-discord_api = DiscordAPIClient()
-links = discord_api.get_existing_links()
+# discord_api = DiscordAPIClient()
+# links = discord_api.get_existing_links()
 
 with open(os.path.dirname(__file__) + '/config.json') as f:
     config = json.load(f)

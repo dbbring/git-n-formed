@@ -20,7 +20,9 @@ class TwitterReader(ReaderAbstract):
     post_items = []
     # List[content_items] content items being whatever native structure the reader gets
     _content_list: list = []
-    properties = {}
+    properties = {
+        "allow_retweets": False
+    }
 
     def __init__(self):
         load_dotenv()
@@ -49,16 +51,19 @@ class TwitterReader(ReaderAbstract):
 
         return False
 
-    def __is_not_retweet(self, tweet) -> bool:
+    def __verify_retweet_status(self, tweet) -> bool:
+        if self.properties["allow_retweets"]:
+            return True 
+
         try:
             tweet.retweeted_status.text
-            return False
+            return False # This is a retweet and we specifed no retweets
         except AttributeError:  # Not a Retweet
             return True
 
     def __get_latest_content(self) -> None:
         for tweet in self._content_list:
-            if self.__is_current_tweet(tweet) and self.__is_not_retweet(tweet):
+            if self.__is_current_tweet(tweet) and self.__verify_retweet_status(tweet):
                 self.post_items.append(
                     self._to_post_item(tweet))
         return

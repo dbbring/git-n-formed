@@ -2,12 +2,12 @@
   "feeds": [
     {
       "channels": [
-        "supporter-dev"
+        "free-dev"
       ],
-      "url": "programming",
-      "type": "reddit",
+      "url": "#bugbountytips",
+      "type": "twitter",
       "type_properties": {
-        "ups": 5
+        "allow_retweets": false
       }
     }
   ],
