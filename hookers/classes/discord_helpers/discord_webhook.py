@@ -7,70 +7,75 @@ from dotenv import load_dotenv
 from ..post_items.post_item import PostItem
 
 
-class DiscordWebhook(object):
+class DiscordRoutes(object):
 
-    _channel: str = ''
-    _webhook: Webhook = None
-    _exisiting_links = {}
+    _channels: dict = {}
 
-    def __init__(self, channel: str):
-        if len(channel) == 0:
-            return
-
-        self._channel = channel
-
+    def __init__(self) -> None:
         load_dotenv()
 
         self.__FREE_DEV: final = {
             'id': int(os.getenv('FREE_DEV_ID')),
-            'token': os.getenv('FREE_DEV_TOKEN')
+            'token': os.getenv('FREE_DEV_TOKEN'),
+            'chan_id': os.getenv('FREE_DEV_CHAN_ID')
         }
         self.__SUPPORTER_DEV: final = {
             'id': int(os.getenv('SUPPORTER_DEV_ID')),
-            'token': os.getenv('SUPPORTER_DEV_TOKEN')
+            'token': os.getenv('SUPPORTER_DEV_TOKEN'),
+            'chan_id': os.getenv('SUPPORTER_DEV_CHAN_ID')
         }
         self.__FREE_SECURITY: final = {
             'id': int(os.getenv('FREE_SECURITY_ID')),
-            'token': os.getenv('FREE_SECURITY_TOKEN')
+            'token': os.getenv('FREE_SECURITY_TOKEN'),
+            'chan_id': os.getenv('FREE_SECURITY_CHAN_ID')
         }
         self.__SUPPORTER_SECURITY: final = {
             'id': int(os.getenv('SUPPORTER_SECURITY_ID')),
-            'token': os.getenv('SUPPORTER_SECURITY_TOKEN')
+            'token': os.getenv('SUPPORTER_SECURITY_TOKEN'),
+            'chan_id': os.getenv('SUPPORTER_SECURITY_CHAN_ID')
         }
         self.__FREE_SYSTEMS: final = {
             'id': int(os.getenv('FREE_SYSTEMS_ID')),
-            'token': os.getenv('FREE_SYSTEMS_TOKEN')
+            'token': os.getenv('FREE_SYSTEMS_TOKEN'),
+            'chan_id': os.getenv('FREE_SYSTEMS_CHAN_ID')
         }
         self.__SUPPORTER_SYSTEMS: final = {
             'id': int(os.getenv('SUPPORTER_SYSTEMS_ID')),
-            'token': os.getenv('SUPPORTER_SYSTEMS_TOKEN')
+            'token': os.getenv('SUPPORTER_SYSTEMS_TOKEN'),
+            'chan_id': os.getenv('SUPPORTER_SYSTEMS_CHAN_ID')
         }
         self.__FREE_CLOUD: final = {
             'id': int(os.getenv('FREE_CLOUD_ID')),
-            'token': os.getenv('FREE_CLOUD_TOKEN')
+            'token': os.getenv('FREE_CLOUD_TOKEN'),
+            'chan_id': os.getenv('FREE_CLOUD_CHAN_ID')
         }
         self.__SUPPORTER_CLOUD: final = {
             'id': int(os.getenv('SUPPORTER_CLOUD_ID')),
-            'token': os.getenv('SUPPORTER_CLOUD_TOKEN')
+            'token': os.getenv('SUPPORTER_CLOUD_TOKEN'),
+            'chan_id': os.getenv('SUPPORTER_CLOUD_CHAN_ID')
         }
         self.__FREE_DEV_OPS: final = {
             'id': int(os.getenv('FREE_DEV_OPS_ID')),
-            'token': os.getenv('FREE_DEV_OPS_TOKEN')
+            'token': os.getenv('FREE_DEV_OPS_TOKEN'),
+            'chan_id': os.getenv('FREE_DEV_OPS_CHAN_ID')
         }
         self.__SUPPORTER_DEV_OPS: final = {
             'id': int(os.getenv('SUPPORTER_DEV_OPS_ID')),
-            'token': os.getenv('SUPPORTER_DEV_OPS_TOKEN')
+            'token': os.getenv('SUPPORTER_DEV_OPS_TOKEN'),
+            'chan_id': os.getenv('SUPPORTER_DEV_OPS_CHAN_ID')
         }
         self.__FREE_DATABASE: final = {
             'id': int(os.getenv('FREE_DATABASE_ID')),
-            'token': os.getenv('FREE_DATABASE_TOKEN')
+            'token': os.getenv('FREE_DATABASE_TOKEN'),
+            'chan_id': os.getenv('FREE_DATABASE_CHAN_ID')
         }
         self.__SUPPORTER_DATABASE: final = {
             'id': int(os.getenv('SUPPORTER_DATABASE_ID')),
-            'token': os.getenv('SUPPORTER_DATABASE_TOKEN')
+            'token': os.getenv('SUPPORTER_DATABASE_TOKEN'),
+            'chan_id': os.getenv('SUPPORTER_DATABASE_CHAN_ID')
         }
 
-        self._routes = {
+        self._channels = {
             'free-dev': self.__FREE_DEV,
             'supporter-dev': self.__SUPPORTER_DEV,
             'free-security': self.__FREE_SECURITY,
@@ -84,10 +89,27 @@ class DiscordWebhook(object):
             'free-database': self.__FREE_DATABASE,
             'supporter-database': self.__SUPPORTER_DATABASE
         }
+        return
 
+    def get_all_channels(self) -> list:
+        return self._channels.keys()
+
+    def get_channel_id(self, channel: str) -> int:
+        return int(self._channels[channel]['chan_id'])
+
+
+class DiscordWebhook(DiscordRoutes):
+
+    _channel: str = ''
+    _webhook: Webhook = None
+
+    def __init__(self, channel: str):
+        if len(channel) == 0:
+            return
+
+        super().__init__()
         self._webhook = Webhook.partial(
-            self._routes[channel]['id'], self._routes[channel]['token'], adapter=RequestsWebhookAdapter())
-        self._exisiting_links = DiscordGlobals().existing_links_global
+            super()._channels[channel]['id'], super()._channels[channel]['token'], adapter=RequestsWebhookAdapter())
         return
 
     def _build_msg(self, post: PostItem):
