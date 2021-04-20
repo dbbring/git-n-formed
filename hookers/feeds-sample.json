@@ -13,6 +13,16 @@
       ],
       "url": "https://blog.includesecurity.com/feed/",
       "type": "rss"
+    },
+    {
+      "channels": [
+        "supporter-dev"
+      ],
+      "url": "programming",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5
+      }
     }
   ],
   "ads": []
