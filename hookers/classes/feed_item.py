@@ -10,7 +10,7 @@ class FeedItem(object):
     _feed = {}
     _webhooks = []
 
-    def __init__(self, feed: dict):
+    def __init__(self, feed: dict, exisiting_links: dict):
         super().__init__()
         self._webhooks = []
         self._feed = feed
@@ -20,7 +20,9 @@ class FeedItem(object):
             self._reader.properties[prop] = self._feed["type_properties"][prop]
 
         for channel in self._feed['channels']:
-            self._webhooks.append(DiscordWebhook(channel))
+            webhook = DiscordWebhook(channel)
+            webhook.exisiting_links = exisiting_links
+            self._webhooks.append(webhook)
 
         return
 

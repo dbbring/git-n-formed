@@ -5,6 +5,7 @@ from discord import Webhook, RequestsWebhookAdapter
 from dotenv import load_dotenv
 # Custom Modules
 from ..post_items.post_item import PostItem
+from ..utils.string_utils import StringUtils
 
 
 class DiscordRoutes(object):
@@ -103,20 +104,35 @@ class DiscordWebhook(object):
     _routes: DiscordRoutes = None
     _channel: str = ''
     _webhook: Webhook = None
+    exisiting_links = {}
 
     def __init__(self, channel: str):
         if len(channel) == 0:
             return
+
+        self._channel = channel
 
         _routes = DiscordRoutes()
         self._webhook = Webhook.partial(
             _routes._channels[channel]['id'], _routes._channels[channel]['token'], adapter=RequestsWebhookAdapter())
         return
 
+    def __is_valid_post_item(self, post_item: PostItem):
+        if (post_item.content == '') and (post_item.link == '') and (post_item.embed == None):
+            return False
+
+        msgs = self.exisiting_links[self._channel]
+        clean_link = StringUtils.sanitize_url(post_item.link)
+
+        if (clean_link in msgs):
+            return False
+
+        return True
+
     def _build_msg(self, post: PostItem):
         return post.content + ' \n\n  ' + post.link
 
     def post(self, post_item: PostItem):
-        if self._webhook is not None:
+        if self._webhook is not None and self.__is_valid_post_item(post_item):
             msg = self._build_msg(post_item)
             self._webhook.send(content=msg, embed=post_item.embed)

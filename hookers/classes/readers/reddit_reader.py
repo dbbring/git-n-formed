@@ -14,12 +14,12 @@ class NotAuthenticatedRedditExcpetion(Exception):
 
 class RedditReader(ReaderAbstract):
 
-    MAX_REDDIT_COMMENTS = 25
+    MAX_REDDIT_COMMENTS = 500
     __api = None
-    # List[Post_Items]
-    post_items = []
     # List[content_items] content items being whatever native structure the reader gets
     _content_list: list = []
+    # List[Post_Items]
+    post_items = []
     properties = {
         "ups": 0
     }
@@ -52,7 +52,7 @@ class RedditReader(ReaderAbstract):
         return
 
     def _to_post_item(self, content):
-        return PostItem(content='', link='https://www.reddit.com'+content.permalink)
+        return PostItem(content='', link='https://www.reddit.com' + content.permalink)
 
     def _is_valid_link(self, link: str) -> bool:
 

@@ -14,7 +14,7 @@ class NotAuthenticatedTwitterExcpetion(Exception):
 
 class TwitterReader(ReaderAbstract):
 
-    MAX_SEARCH_TWEETS = 25
+    MAX_SEARCH_TWEETS = 500
     __api = None
     # List[Post_Items]
     post_items = []
@@ -53,11 +53,11 @@ class TwitterReader(ReaderAbstract):
 
     def __verify_retweet_status(self, tweet) -> bool:
         if self.properties["allow_retweets"]:
-            return True 
+            return True
 
         try:
             tweet.retweeted_status.text
-            return False # This is a retweet and we specifed no retweets
+            return False  # This is a retweet and we specifed no retweets
         except AttributeError:  # Not a Retweet
             return True
 

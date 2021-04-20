@@ -1,10 +1,10 @@
 # Global Modules
 import os
 import discord
-import re
 from dotenv import load_dotenv
 # Custom Modules
 from .discord_webhook import DiscordRoutes
+from ..utils.string_utils import StringUtils
 
 
 class DiscordAPIClient(object):
@@ -40,40 +40,11 @@ class DiscordAPIClient(object):
                 messages = await discord_channel.history(limit=self.__MAX_MESSAGE_LIMIT).flatten()
                 self.channel_history[channel] = messages
 
-    def __sanitize_url(self, dirty_url: str) -> str:
-        if len(dirty_url) == 0:
-            return ''
-
-        clean_url = dirty_url.replace('https', '')
-        clean_url = clean_url.replace('http', '')
-        clean_url = clean_url.replace('://www.', '')
-        clean_url = clean_url.replace('://', '')
-
-        if clean_url[len(clean_url) - 1] == '/':
-            clean_url = clean_url[0:len(clean_url) - 1]
-
-        return clean_url
-
-    def __find_url(self, message_content: str) -> str:
-        pattern = re.compile(
-            r"(?:(?:https?|ftp):\/\/|\b(?:[a-z\d]+\.))(?:(?:[^\s()<>]+|\((?:[^\s()<>]+|(?:\([^\s()<>]+\)))?\))+(?:\((?:[^\s()<>]+|(?:\(?:[^\s()<>]+\)))?\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))?")
-        result = pattern.search(message_content)
-
-        if result == None:
-            return ''
-
-        return result.group(0)
-
-    def __extract_url(self, message_content):
-        url = self.__find_url(message_content)
-        url = self.__sanitize_url(url)
-        return url
-
     def __process_channel_messages(self, message_list: list) -> set:
         sanitized_url_list = set()
         for message in message_list:
             content = message.content
-            url = self.__extract_url(content)
+            url = StringUtils.sanitize_url(StringUtils.extract_url(content))
             if url != '':
                 sanitized_url_list.add(url)
         return sanitized_url_list
