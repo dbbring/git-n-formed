@@ -1,3 +1,4 @@
+from .readers.basic_ad_reader import BasicAdReader
 from .readers.reader_abstract import ReaderAbstract
 from .readers.reader_factory import ReaderFactory
 from .post_items.post_item import PostItem
@@ -10,7 +11,7 @@ class FeedItem(object):
     _feed = {}
     _webhooks = []
 
-    def __init__(self, feed: dict, exisiting_links: dict):
+    def __init__(self, feed: dict, exisiting_links: dict = {}):
         super().__init__()
         self._webhooks = []
         self._feed = feed
@@ -30,6 +31,10 @@ class FeedItem(object):
         webhook: DiscordWebhook
 
         for webhook in self._webhooks:
+            channel_prefix = webhook.channel.split('-')[0]
+            if (self._feed['type'] == 'basic-ad') and (channel_prefix == 'supporter'):
+                continue
+
             webhook.post(post_item)
         return self
 

@@ -102,15 +102,15 @@ class DiscordRoutes(object):
 class DiscordWebhook(object):
 
     _routes: DiscordRoutes = None
-    _channel: str = ''
     _webhook: Webhook = None
+    channel: str = ''
     exisiting_links = {}
 
     def __init__(self, channel: str):
         if len(channel) == 0:
             return
 
-        self._channel = channel
+        self.channel = channel
 
         _routes = DiscordRoutes()
         self._webhook = Webhook.partial(
@@ -121,11 +121,12 @@ class DiscordWebhook(object):
         if (post_item.content == '') and (post_item.link == '') and (post_item.embed == None):
             return False
 
-        msgs = self.exisiting_links[self._channel]
-        clean_link = StringUtils.sanitize_url(post_item.link)
+        if len(self.exisiting_links.keys()) > 0:
+            msgs = self.exisiting_links[self.channel]
+            clean_link = StringUtils.sanitize_url(post_item.link)
 
-        if (clean_link in msgs):
-            return False
+            if (clean_link in msgs):
+                return False
 
         return True
 

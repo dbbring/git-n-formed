@@ -1,15 +1,48 @@
 {
   "feeds": [
     {
-      "channels": [
-        "supporter-security"
-      ],
+      "display_ad": true,
       "url": "#bugbountytips",
       "type": "twitter",
       "type_properties": {
         "allow_retweets": false
-      }
+      },
+      "channels": [
+        "free-security"
+      ]
+    },
+    {
+      "display_ad": true,
+      "url": "programming",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5
+      },
+      "channels": [
+        "free-dev"
+      ]
     }
   ],
-  "ads": []
+  "ads": [
+    {
+      "url": "https://www.patreon.com/user?u=53460050",
+      "type": "basic-ad",
+      "channels": [
+        "free-security"
+      ],
+      "type_properties": {
+        "message": ""
+      }
+    },
+    {
+      "url": "https://www.patreon.com/gITnFormed",
+      "type": "basic-ad",
+      "channels": [
+        "free-dev"
+      ],
+      "type_properties": {
+        "message": "Please Support!"
+      }
+    }
+  ]
 }
