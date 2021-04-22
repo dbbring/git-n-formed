@@ -1,35 +1,81 @@
 # Global Modules
 import json
 import os
+import sys
 from dotenv import load_dotenv
+from multiprocessing import Process, Manager
+import traceback
 # Custom Modules
 from classes.feed_item import FeedItem
 from classes.discord_helpers.discord_api_client import DiscordAPIClient
+from classes.exception_helpers.exception_wrapper import CustomException, ExceptionWrapper
 
-load_dotenv()
-ad_counter = 0
-discord_api = DiscordAPIClient()
-
-with open(os.path.dirname(__file__) + '/feeds.json') as f:
-    feeds = json.load(f)
-
-# links = discord_api.get_existing_links()
+# ======================================================================
 
 
-def main(feed: dict, ad_index: int, exisiting_links: dict = {}):
-    # feed_item = FeedItem(feed, links)
-    feed_item = FeedItem(feed)
-    feed_item.get_feed().save()
+def main(feed: dict, ad_index: int, err_list: list, exisiting_links: dict = {}):
+    try:
+        feed_item = FeedItem(feed, exisiting_links)
+        feed_item.get_feed().save()
 
-    if feed["display_ad"]:
-        ad = feeds['ads'][ad_counter]
+        if feed["display_ad"]:
+            ad = feeds['ads'][ad_index]
 
-        ad_item = FeedItem(ad)
-        ad_item.get_feed().save()
-    return
+            ad_item = FeedItem(ad)
+            ad_item.get_feed().save()
+        return
+    except Exception as e:
+        tb = sys.exc_info()
+        err = CustomException()
+        err.orig_exception = e.with_traceback(tb[2])
+        err.func_args['ad_index'] = ad_index
+        err.func_args['feed'] = feed
+        err.func_args['exist-links'] = exisiting_links
+        err.stack_trace = "Stack Trace:\n{}".format(
+            "".join(traceback.format_exception(type(e), e, e.__traceback__)))
+
+        err_list.append(err)
+        return
 
 
-for feed in feeds['feeds']:
-    ad_counter = ad_counter + \
-        1 if ad_counter < (len(feeds['ads']) - 1) else 0
-    main(feed, ad_counter)
+# ======================================================================
+
+
+if __name__ == '__main__':
+
+    errors = ExceptionWrapper('\\feed_errors.log')
+    try:
+        load_dotenv()
+        ad_counter = -1
+        discord_api = DiscordAPIClient()
+        main_errors = ExceptionWrapper('\\main_errors.log')
+
+        with open(os.path.dirname(__file__) + '/feeds.json') as f:
+            feeds = json.load(f)
+
+        links = discord_api.get_existing_links()
+
+        with Manager() as manager:
+            errors.custom_exceptions = manager.list([])
+
+            for feed in feeds['feeds']:
+                ad_counter = ad_counter + \
+                    1 if ad_counter < (len(feeds['ads']) - 1) else -1
+
+                p = Process(target=main, args=(
+                    feed, ad_counter, errors.custom_exceptions))
+                p.start()
+                p.join()
+
+            errors.save()
+
+    except Exception as e:
+        tb = sys.exc_info()
+        err = CustomException()
+        err.orig_exception = e.with_traceback(tb[2])
+        err.stack_trace = "Stack Trace:\n{}".format(
+            "".join(traceback.format_exception(type(e), e, e.__traceback__)))
+
+        main_errors.custom_exceptions.append(err)
+
+    main_errors.save()
