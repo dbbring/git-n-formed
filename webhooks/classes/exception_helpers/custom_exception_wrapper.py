@@ -1,9 +1,10 @@
+# Global Modules
 import os
 import datetime
-import traceback
+# Custom Modules
 
 
-class CustomException(Exception):
+class CustomExceptionWrapper(Exception):
 
     orig_exception: Exception = None
     func_args: dict = {}
@@ -14,6 +15,7 @@ class CustomException(Exception):
         self.orig_exception = None
         self.func_args = {}
         self.stack_trace = ''
+        return
 
     def format_orig_exception(self) -> str:
         result = ''
@@ -29,29 +31,30 @@ class CustomException(Exception):
 
         return result
 
-
-class ExceptionWrapper(object):
-
-    __log_file: str = ''
-    custom_exceptions: list = []  # List of CustomExceptions
-
-    def __init__(self, log_name: str) -> None:
-        super().__init__()
-        self.__log_file = os.getcwd() + '\\' + log_name + '.log'
-        return
-
-    def __format_for_log(self, custom_ex: CustomException) -> str:
+    def format_for_log(self) -> str:
         result = '\n'
         result += datetime.datetime.now().strftime("%m/%d/%Y, %H:%M:%S") + '\n'
-        result += custom_ex.format_orig_exception()
+        result += self.format_orig_exception()
         result += '\n'
-        result += custom_ex.format_func_args()
+        result += self.format_func_args()
         result += '\n'
         return result
 
-    def save(self):
+
+class ObjectListCustomExceptionWrapper(object):
+
+    __log_file: str = ''
+    custom_exceptions: list = []  # List of CustomExceptionWrapper
+
+    def __init__(self, log_name: str) -> None:
+        super().__init__()
+        self.custom_exceptions = []
+        self.__log_file = os.getcwd() + '\\' + log_name + '.log'
+        return
+
+    def save(self) -> None:
         if len(self.custom_exceptions) > 0:
             with open(self.__log_file, 'a+') as f:
-                for ex in self.custom_exceptions:
-                    f.write(self.__format_for_log(ex))
+                for custom_except in self.custom_exceptions:
+                    f.write(custom_except.format_for_log())
         return

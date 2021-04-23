@@ -1,4 +1,6 @@
+# Global Modules
 import re
+# Custom Modules
 
 
 class StringUtils(object):

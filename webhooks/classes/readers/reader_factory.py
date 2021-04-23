@@ -5,7 +5,7 @@ from .reddit_reader import RedditReader
 from .basic_ad_reader import BasicAdReader
 
 
-class FactoryReaderNotFoundException(Exception):
+class ReaderFactoryNotFoundException(Exception):
     pass
 
 
@@ -19,11 +19,11 @@ class ReaderFactory():
         'basic-ad': BasicAdReader
     }
 
-    def __init__(self, type: str):
-        try:
+    def __init__(self, type: str) -> None:
+        if type in self.readers.keys():
             self.reader = self.readers[type]()
-        except KeyError:
-            raise FactoryReaderNotFoundException(
+        else:
+            raise ReaderFactoryNotFoundException(
                 type + " reader not found.")
 
         return

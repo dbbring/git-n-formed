@@ -99,41 +99,60 @@ class DiscordRoutes(object):
         return int(self._channels[channel]['chan_id'])
 
 
+class InvalidChannelDiscordWebhookException(Exception):
+    pass
+
+
+class InvalidWebhookException(Exception):
+    pass
+
+
 class DiscordWebhook(object):
 
-    _routes: DiscordRoutes = None
     _webhook: Webhook = None
     channel: str = ''
-    exisiting_links = {}
+    exisiting_links: dict = {}
 
-    def __init__(self, channel: str):
+    def __init__(self, channel: str, exisiting_links: dict) -> None:
         if len(channel) == 0:
-            return
+            raise InvalidChannelDiscordWebhookException(
+                "Channel must not be empty.")
 
         self.channel = channel
-
+        self.exisiting_links = exisiting_links
         _routes = DiscordRoutes()
+
         self._webhook = Webhook.partial(
             _routes._channels[channel]['id'], _routes._channels[channel]['token'], adapter=RequestsWebhookAdapter())
+
+        if self._webhook == None:
+            raise InvalidWebhookException(
+                "Failed to create discord python webhook.")
         return
 
-    def __is_valid_post_item(self, post_item: PostItem):
+    def _is_already_posted(self, url: str) -> bool:
+        if len(self.exisiting_links.keys()) > 0:
+            msgs = self.exisiting_links[self.channel]
+            if (url in msgs):
+                return True
+
+        return False
+
+    def _is_valid_post_item(self, post_item: PostItem) -> bool:
         if (post_item.content == '') and (post_item.link == '') and (post_item.embed == None):
             return False
 
-        if len(self.exisiting_links.keys()) > 0:
-            msgs = self.exisiting_links[self.channel]
-            clean_link = StringUtils.sanitize_url(post_item.link)
-
-            if (clean_link in msgs):
-                return False
+        clean_link = StringUtils.sanitize_url(post_item.link)
+        if self._is_already_posted(clean_link):
+            return False
 
         return True
 
-    def _build_msg(self, post: PostItem):
+    def _build_msg(self, post: PostItem) -> str:
         return post.content + ' \n\n  ' + post.link
 
-    def post(self, post_item: PostItem):
-        if self._webhook is not None and self.__is_valid_post_item(post_item):
+    def post(self, post_item: PostItem) -> None:
+        if self._is_valid_post_item(post_item):
             msg = self._build_msg(post_item)
             self._webhook.send(content=msg, embed=post_item.embed)
+        return

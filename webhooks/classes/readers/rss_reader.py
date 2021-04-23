@@ -10,7 +10,7 @@ from ..post_items.post_item import PostItem
 from ..utils.string_utils import StringUtils
 
 
-class DateNotFoundRSSReaderExcpetion(Exception):
+class DateNotFoundRSSReaderException(Exception):
     pass
 
 
@@ -37,7 +37,7 @@ class RSSReader(ReaderAbstract):
             if date_str != '':
                 return datetime.datetime.strptime(date_str, '%Y-%m-%d')
 
-        raise DateNotFoundRSSReaderExcpetion(
+        raise DateNotFoundRSSReaderException(
             "Could not find valid date attribute in RSS feed.")
 
     def __is_current_content(self, content) -> bool:
