@@ -13,14 +13,12 @@ from classes.exception_helpers.exception_wrapper import CustomException, Excepti
 # ======================================================================
 
 
-def main(feed: dict, ad_index: int, err_list: list, exisiting_links: dict = {}):
+def main(feed: dict, ad: dict, err_list: list, exisiting_links: dict = {}):
     try:
         feed_item = FeedItem(feed, exisiting_links)
         feed_item.get_feed().save()
 
         if feed["display_ad"]:
-            ad = feeds['ads'][ad_index]
-
             ad_item = FeedItem(ad)
             ad_item.get_feed().save()
         return
@@ -28,7 +26,7 @@ def main(feed: dict, ad_index: int, err_list: list, exisiting_links: dict = {}):
         tb = sys.exc_info()
         err = CustomException()
         err.orig_exception = e.with_traceback(tb[2])
-        err.func_args['ad_index'] = ad_index
+        err.func_args['ad'] = ad
         err.func_args['feed'] = feed
         err.func_args['exist-links'] = exisiting_links
         err.stack_trace = "Stack Trace:\n{}".format(
@@ -43,12 +41,12 @@ def main(feed: dict, ad_index: int, err_list: list, exisiting_links: dict = {}):
 
 if __name__ == '__main__':
 
-    errors = ExceptionWrapper('\\feed_errors.log')
+    main_errors = ExceptionWrapper('main_errors')
     try:
         load_dotenv()
         ad_counter = -1
         discord_api = DiscordAPIClient()
-        main_errors = ExceptionWrapper('\\main_errors.log')
+        errors = ExceptionWrapper('feed_errors')
 
         with open(os.path.dirname(__file__) + '/feeds.json') as f:
             feeds = json.load(f)
@@ -61,9 +59,10 @@ if __name__ == '__main__':
             for feed in feeds['feeds']:
                 ad_counter = ad_counter + \
                     1 if ad_counter < (len(feeds['ads']) - 1) else -1
+                ad = feeds['ads'][ad_counter]
 
                 p = Process(target=main, args=(
-                    feed, ad_counter, errors.custom_exceptions))
+                    feed, ad, errors.custom_exceptions, links))
                 p.start()
                 p.join()
 

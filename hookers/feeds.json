@@ -21,27 +21,34 @@
       "channels": [
         "free-dev"
       ]
+    },
+    {
+      "display_ad": false,
+      "url": "https://xkcd.com/atom.xml",
+      "type": "rss",
+      "type_properties": {},
+      "channels": [
+        "free-dev",
+        "free-cloud",
+        "free-security",
+        "free-dev-ops",
+        "free-systems"
+      ]
     }
   ],
   "ads": [
     {
-      "url": "https://www.patreon.com/user?u=53460050",
-      "type": "basic-ad",
-      "channels": [
-        "free-security"
-      ],
-      "type_properties": {
-        "message": ""
-      }
-    },
-    {
       "url": "https://www.patreon.com/gITnFormed",
       "type": "basic-ad",
       "channels": [
-        "free-dev"
+        "free-dev",
+        "free-cloud",
+        "free-security",
+        "free-dev-ops",
+        "free-systems"
       ],
       "type_properties": {
-        "message": "Please Support!"
+        "message": "Please consider supporting gIT-n-Formed. Donating supports continued development of new features and provides continued support of operations!"
       }
     }
   ]

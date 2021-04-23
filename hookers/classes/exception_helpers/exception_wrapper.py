@@ -35,9 +35,9 @@ class ExceptionWrapper(object):
     __log_file: str = ''
     custom_exceptions: list = []  # List of CustomExceptions
 
-    def __init__(self, full_log_name:str) -> None:
+    def __init__(self, log_name: str) -> None:
         super().__init__()
-        self.__log_file = os.getcwd() + full_log_name
+        self.__log_file = os.getcwd() + '\\' + log_name + '.log'
         return
 
     def __format_for_log(self, custom_ex: CustomException) -> str:
@@ -50,7 +50,8 @@ class ExceptionWrapper(object):
         return result
 
     def save(self):
-        with open(self.__log_file, 'a+') as f:
-            for ex in self.custom_exceptions:
-                f.write(self.__format_for_log(ex))
+        if len(self.custom_exceptions) > 0:
+            with open(self.__log_file, 'a+') as f:
+                for ex in self.custom_exceptions:
+                    f.write(self.__format_for_log(ex))
         return

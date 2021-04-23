@@ -14,7 +14,7 @@ class NotAuthenticatedRedditExcpetion(Exception):
 
 class RedditReader(ReaderAbstract):
 
-    MAX_REDDIT_COMMENTS = 500
+    MAX_REDDIT_COMMENTS = 25
     __api = None
     # List[content_items] content items being whatever native structure the reader gets
     _content_list: list = []

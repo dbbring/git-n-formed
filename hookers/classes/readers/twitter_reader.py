@@ -14,7 +14,7 @@ class NotAuthenticatedTwitterExcpetion(Exception):
 
 class TwitterReader(ReaderAbstract):
 
-    MAX_SEARCH_TWEETS = 500
+    MAX_SEARCH_TWEETS = 25
     __api = None
     # List[Post_Items]
     post_items = []
