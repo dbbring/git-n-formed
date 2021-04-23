@@ -28,3 +28,14 @@ class StringUtils(object):
             return ''
 
         return result.group(0)
+
+    @staticmethod
+    def extract_date(string: str) -> str:
+        pattern = re.compile(
+            r"\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])*")
+        result = pattern.search(string)
+
+        if result == None:
+            return ''
+
+        return result.group(0)

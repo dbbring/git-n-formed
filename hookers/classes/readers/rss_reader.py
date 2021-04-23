@@ -7,6 +7,11 @@ import feedparser
 # Custom Modules
 from .reader_abstract import ReaderAbstract
 from ..post_items.post_item import PostItem
+from ..utils.string_utils import StringUtils
+
+
+class DateNotFoundRSSReaderExcpetion(Exception):
+    pass
 
 
 class RSSReader(ReaderAbstract):
@@ -23,9 +28,21 @@ class RSSReader(ReaderAbstract):
         self.post_items = []
         return
 
-    def __is_current_content(self, date: tuple) -> bool:
+    def __get_content_date(self, content):
+        if hasattr(content, 'published_parsed'):
+            return datetime.datetime(*(content.published_parsed[0:6])).date()
+
+        if hasattr(content, 'updated'):
+            date_str = StringUtils.extract_date(content.updated)
+            if date_str != '':
+                return datetime.datetime.strptime(date_str, '%Y-%m-%d')
+
+        raise DateNotFoundRSSReaderExcpetion(
+            "Could not find valid date attribute in RSS feed.")
+
+    def __is_current_content(self, content) -> bool:
         today = datetime.date.today()
-        post_date = datetime.datetime(*(date[0:6])).date()
+        post_date = self.__get_content_date(content)
 
         if today == post_date:
             return True
@@ -34,7 +51,7 @@ class RSSReader(ReaderAbstract):
 
     def __get_latest_content(self) -> int:
         for content in self._content_list:
-            if self.__is_current_content(content.published_parsed):
+            if self.__is_current_content(content):
                 self.post_items.append(
                     self._to_post_item(content))
         return len(self._content_list)

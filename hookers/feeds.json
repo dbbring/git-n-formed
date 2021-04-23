@@ -41,14 +41,10 @@
       "url": "https://www.patreon.com/gITnFormed",
       "type": "basic-ad",
       "channels": [
-        "free-dev",
-        "free-cloud",
-        "free-security",
-        "free-dev-ops",
-        "free-systems"
+        "free-dev"
       ],
       "type_properties": {
-        "message": "Please consider supporting gIT-n-Formed. Donating supports continued development of new features and provides continued support of operations!"
+        "message": "\n\nPlease consider supporting gIT-n-Formed. Donating supports continued development of new features and provides continued support of operations!"
       }
     }
   ]
