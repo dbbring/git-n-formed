@@ -1,46 +1,50 @@
 # Global Modules
+from __future__ import annotations
 import os
 import datetime
 import tweepy
 from dotenv import load_dotenv
 # Custom Modules
-from .reader_abstract import ReaderAbstract
-from ..post_items.post_item import PostItem
+from ._property_reader_abstract import PropertyReaderAbstract
+from ....post_items.post_item import PostItem
+from ....utils.string_utils import StringUtils
 
 
 class NotAuthenticatedTwitterExcpetion(Exception):
     pass
 
 
-class TwitterReader(ReaderAbstract):
+class TwitterReader(PropertyReaderAbstract):
 
-    MAX_SEARCH_TWEETS = 25
     __api = None
     # List[Post_Items]
     post_items = []
     # List[content_items] content items being whatever native structure the reader gets
     _content_list: list = []
-    properties = {
-        "allow_retweets": False
-    }
+    # Optionable args from feed json
+    properties = {}
 
-    def __init__(self):
+    def __init__(self) -> None:
         load_dotenv()
         self.__authenticate()
         self._content_list = []
+        self.post_items = []
+        self.properties = {
+            "allow_retweets": False,
+            "max_search_tweets": 10
+        }
         return
 
-    def __authenticate(self):
-        try:
-            auth = tweepy.AppAuthHandler(
-                os.getenv('TWITTER_API'), os.getenv('TWITTER_API_SECRET'))
-            self.__api = tweepy.API(auth)
+    def __authenticate(self) -> None:
+        auth = tweepy.AppAuthHandler(
+            os.getenv('TWITTER_API'), os.getenv('TWITTER_API_SECRET'))
+        self.__api = tweepy.API(auth)
 
-            if self.__api == None:
-                raise Exception
-        except:
+        if self.__api == None:
             raise NotAuthenticatedTwitterExcpetion(
                 "We could not OAuth2 with Twitter.")
+
+        return
 
     def __is_current_tweet(self, tweet) -> bool:
         today = datetime.date.today()
@@ -68,28 +72,26 @@ class TwitterReader(ReaderAbstract):
                     self._to_post_item(tweet))
         return
 
-    def __process_content(self) -> None:
+    def __parse_content(self) -> None:
         self.__get_latest_content()
-        for index, post in enumerate(self.post_items):
-            if self._is_valid_link(post.link) == False:
-                self.post_items.pop(index)
+        self.post_items = filter(self._is_valid_link, self.post_items)
         return None
 
-    def _is_valid_link(self, link: str) -> bool:
+    def _is_valid_link(self, post_item: PostItem) -> bool:
+        if post_item.link == '':
+            return False
 
-        # additional checks here like already posted in chan
-
-        if link == '':
+        if StringUtils.extract_url(post_item.link) == '':
             return False
 
         return True
 
-    def _to_post_item(self, tweet):
+    def _to_post_item(self, tweet) -> PostItem:
         return PostItem(
             content='', link='https://twitter.com/i/web/status/' + tweet.id_str)
 
-    def fetch(self, url: str):
+    def fetch(self, url: str) -> TwitterReader:
         self._content_list = tweepy.Cursor(
-            self.__api.search, q=url).items(self.MAX_SEARCH_TWEETS)
-        self.__process_content()
+            self.__api.search, q=url).items(self.properties["max_search_tweets"])
+        self.__parse_content()
         return self

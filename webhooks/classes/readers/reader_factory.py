@@ -1,8 +1,11 @@
-from .reader_abstract import ReaderAbstract
-from .rss_reader import RSSReader
-from .twitter_reader import TwitterReader
-from .reddit_reader import RedditReader
-from .basic_ad_reader import BasicAdReader
+# Global Modules
+
+# Custom Modules
+from .readers.reader_abstract import ReaderAbstract
+from .readers.property_readers.rss_reader import RSSReader
+from .readers.property_readers.twitter_reader import TwitterReader
+from .readers.property_readers.reddit_reader import RedditReader
+from .readers.property_readers.basic_ad_reader import BasicAdReader
 
 
 class ReaderFactoryNotFoundException(Exception):

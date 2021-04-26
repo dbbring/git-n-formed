@@ -5,7 +5,8 @@
       "url": "#bugbountytips",
       "type": "twitter",
       "type_properties": {
-        "allow_retweets": false
+        "allow_retweets": false,
+        "max_search_tweets": 25
       },
       "channels": [
         "free-security"
@@ -16,7 +17,8 @@
       "url": "programming",
       "type": "reddit",
       "type_properties": {
-        "ups": 5
+        "ups": 5,
+        "max_reddit_posts": 25
       },
       "channels": [
         "free-dev"

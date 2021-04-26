@@ -1,32 +1,36 @@
 # Global Modules
+from __future__ import annotations
 import praw
 import os
 from dotenv import load_dotenv
 import datetime
 # Custom Modules
-from .reader_abstract import ReaderAbstract
-from ..post_items.post_item import PostItem
+from ._property_reader_abstract import PropertyReaderAbstract
+from ....post_items.post_item import PostItem
+from ....utils.string_utils import StringUtils
 
 
 class NotAuthenticatedRedditExcpetion(Exception):
     pass
 
 
-class RedditReader(ReaderAbstract):
+class RedditReader(PropertyReaderAbstract):
 
-    MAX_REDDIT_COMMENTS = 25
     __api = None
     # List[content_items] content items being whatever native structure the reader gets
     _content_list: list = []
     # List[Post_Items]
     post_items = []
-    properties = {
-        "ups": 0
-    }
+    # Optionable args from feeds json
+    properties = {}
 
     def __init__(self):
         super().__init__()
         load_dotenv()
+        self.properties = {
+            "ups": 0,
+            "max_reddit_posts": 25
+        }
         self.__api = praw.Reddit(
             client_id=os.getenv('REDDIT_API'),
             client_secret=os.getenv('REDDIT_API_SECRET'),
@@ -54,24 +58,23 @@ class RedditReader(ReaderAbstract):
     def _to_post_item(self, content):
         return PostItem(content='', link='https://www.reddit.com' + content.permalink)
 
-    def _is_valid_link(self, link: str) -> bool:
+    def _is_valid_link(self, post_item: PostItem) -> bool:
+        if post_item.link == '':
+            return False
 
-        # additional checks here like already posted in chan
-
-        if link == '':
+        if StringUtils.extract_url(post_item.link) == '':
             return False
 
         return True
 
-    def _parse_content(self):
+    def _parse_content(self) -> None:
         self.__get_latest_content()
-        for index, post in enumerate(self.post_items):
-            if self._is_valid_link(post.link) == False:
-                self.post_items.pop(index)
-        return
+        self.post_items = filter(self._is_valid_link, self.post_items)
+        return None
 
-    def fetch(self, url: str):
+    def fetch(self, url: str) -> RedditReader:
         subreddit = self.__api.subreddit(url)
-        self._content_list = subreddit.new(limit=self.MAX_REDDIT_COMMENTS)
+        self._content_list = subreddit.new(
+            limit=self.properties["max_reddit_posts"])
         self._parse_content()
         return self

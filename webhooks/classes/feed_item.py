@@ -1,7 +1,7 @@
 # Global Modules
 from __future__ import annotations
 # Custom Modules
-from .readers.reader_abstract import ReaderAbstract
+from .readers.readers.reader_abstract import ReaderAbstract
 from .readers.reader_factory import ReaderFactory
 from .post_items.post_item import PostItem
 from .discord_helpers.discord_webhook import DiscordWebhook

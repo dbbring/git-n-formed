@@ -1,34 +1,35 @@
-# Type Hinting
-from __future__ import annotations
-from typing import final
 # Global Modules
+from __future__ import annotations
 import datetime
 import feedparser
 # Custom Modules
-from .reader_abstract import ReaderAbstract
-from ..post_items.post_item import PostItem
-from ..utils.string_utils import StringUtils
+from ._property_reader_abstract import PropertyReaderAbstract
+from ....post_items.post_item import PostItem
+from ....utils.string_utils import StringUtils
 
 
 class DateNotFoundRSSReaderException(Exception):
     pass
 
 
-class RSSReader(ReaderAbstract):
+class RSSReader(PropertyReaderAbstract):
 
-    MAX_RSS_ENTRIES: final = 10
     # List[content_items] content items being whatever native structure the reader gets
     _content_list: list = []
     # List[PostItem]
     post_items: list = []
+    # Optionable args from feeds json
     properties = {}
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._content_list = []
         self.post_items = []
+        self.properties = {
+            "max_rss_entries": 10
+        }
         return
 
-    def __get_content_date(self, content):
+    def __get_content_date(self, content) -> datetime:
         if hasattr(content, 'published_parsed'):
             return datetime.datetime(*(content.published_parsed[0:6])).date()
 
@@ -49,35 +50,32 @@ class RSSReader(ReaderAbstract):
 
         return False
 
-    def __get_latest_content(self) -> int:
+    def __get_latest_content(self) -> None:
         for content in self._content_list:
             if self.__is_current_content(content):
                 self.post_items.append(
                     self._to_post_item(content))
-        return len(self._content_list)
+        return
+
+    def __parse_content(self) -> None:
+        self.__get_latest_content()
+        self.post_items = filter(self._is_valid_link, self.post_items)
+        return None
 
     def _to_post_item(self, content_item) -> PostItem:
         return PostItem(content_item['title'], content_item['link'])
 
-    def _is_valid_link(self, link: str) -> bool:
-        isValid = False
+    def _is_valid_link(self, post_item: PostItem) -> bool:
+        if post_item.link == '':
+            return False
 
-        # additional checks here like already posted in chan
+        if StringUtils.extract_url(post_item.link) == '':
+            return False
 
-        if link != '':
-            isValid = True
-
-        return isValid
-
-    def __fetch_content(self) -> None:
-        self.__get_latest_content()
-        for index, post in enumerate(self.post_items):
-            if self._is_valid_link(post.link) == False:
-                self.post_items.pop(index)
-        return None
+        return True
 
     def fetch(self, rss_url: str) -> RSSReader:
         feed = feedparser.parse(rss_url)
-        self._content_list = feed.entries[0:self.MAX_RSS_ENTRIES]
-        self.__fetch_content()
+        self._content_list = feed.entries[0:self.properties["max_rss_entries"]]
+        self.__parse_content()
         return self
