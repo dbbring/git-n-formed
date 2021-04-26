@@ -1,0 +1,53 @@
+{
+  "feeds": [
+    {
+      "display_ad": true,
+      "url": "#bugbountytips",
+      "type": "twitter",
+      "type_properties": {
+        "allow_retweets": false,
+        "max_search_tweets": 25
+      },
+      "channels": [
+        "free-security"
+      ]
+    },
+    {
+      "display_ad": true,
+      "url": "programming",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5,
+        "max_reddit_posts": 25
+      },
+      "channels": [
+        "free-dev"
+      ]
+    },
+    {
+      "display_ad": false,
+      "url": "https://xkcd.com/atom.xml",
+      "type": "rss",
+      "type_properties": {},
+      "channels": [
+        "free-dev",
+        "free-cloud",
+        "free-security",
+        "free-dev-ops",
+        "free-systems"
+      ]
+    }
+  ],
+  "ads": [
+    {
+      "url": "https://www.patreon.com/gITnFormed",
+      "type": "basic-ad",
+      "channels": [
+        "free-dev"
+      ],
+      "type_properties": {
+        "message": "\n\nPlease consider supporting gIT-n-Formed. Donating supports continued development of new features and provides continued support of operations!"
+      }
+    }
+  ]
+}
