@@ -18,7 +18,7 @@ class DiscordAPIClient(object):
 
     def __init__(self) -> None:
         super().__init__()
-        load_dotenv()
+        load_dotenv(dotenv_path="./webhooks/staging/.env")
         self.__client = discord_python.Client()
         self._routes = DiscordRoutes()
         return None

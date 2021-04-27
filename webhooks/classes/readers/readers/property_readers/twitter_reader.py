@@ -25,7 +25,7 @@ class TwitterReader(PropertyReaderAbstract):
     properties = {}
 
     def __init__(self) -> None:
-        load_dotenv()
+        load_dotenv(dotenv_path="./webhooks/staging/.env")
         self.__authenticate()
         self._content_list = []
         self.post_items = []

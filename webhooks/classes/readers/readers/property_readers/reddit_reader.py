@@ -26,7 +26,7 @@ class RedditReader(PropertyReaderAbstract):
 
     def __init__(self):
         super().__init__()
-        load_dotenv()
+        load_dotenv(dotenv_path="./webhooks/staging/.env")
         self.properties = {
             "ups": 0,
             "max_reddit_posts": 25

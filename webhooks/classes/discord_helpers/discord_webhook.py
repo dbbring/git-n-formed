@@ -13,7 +13,7 @@ class DiscordRoutes(object):
     _channels: dict = {}
 
     def __init__(self) -> None:
-        load_dotenv()
+        load_dotenv(dotenv_path="./webhooks/staging/.env")
 
         self.__FREE_DEV: final = {
             'id': int(os.getenv('FREE_DEV_ID')),

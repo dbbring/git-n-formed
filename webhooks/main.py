@@ -33,7 +33,7 @@ def process_feed(feed: dict, ad: dict, err_list: list, exisiting_links: dict = {
 
 
 def main(feeds: dict):
-    load_dotenv()
+    load_dotenv(dotenv_path="./webhooks/staging/.env")
     ad_counter = -1
     discord_api = DiscordAPIClient()
     feed_errors = ObjectListCustomExceptionWrapper('feed_errors')
