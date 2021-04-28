@@ -3,6 +3,7 @@ import json
 import os
 import sys
 import traceback
+from dotenv import load_dotenv
 # Custom Modules
 from main import main
 from classes.exception_helpers.custom_exception_wrapper import CustomExceptionWrapper, ObjectListCustomExceptionWrapper
@@ -14,9 +15,11 @@ from classes.exception_helpers.custom_exception_wrapper import CustomExceptionWr
 if __name__ == '__main__':
 
     main_errors = ObjectListCustomExceptionWrapper('main_errors')
+    ENVIRONMENT = 'staging'
 
     try:
-        with open(os.path.dirname(__file__) + '/feeds.json') as f:
+        load_dotenv(dotenv_path="./webhooks/" + ENVIRONMENT + "/.env")
+        with open(os.path.dirname(__file__) + '/' + ENVIRONMENT + '/feeds.json') as f:
             feeds = json.load(f)
 
         main(feeds)

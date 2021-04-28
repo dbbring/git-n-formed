@@ -1,0 +1,37 @@
+{
+  "feeds": [
+    {
+      "display_ad": true,
+      "url": "@official_php",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 25
+      },
+      "channels": [
+        "free-dev"
+      ]
+    },
+    {
+      "display_ad": true,
+      "url": "programming",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 10,
+        "max_reddit_posts": 10
+      },
+      "channels": [
+        "free-dev"
+      ]
+    },
+    {
+      "display_ad": false,
+      "url": "https://xkcd.com/atom.xml",
+      "type": "rss",
+      "type_properties": {},
+      "channels": [
+        "free-dev"
+      ]
+    }
+  ],
+  "ads": []
+}

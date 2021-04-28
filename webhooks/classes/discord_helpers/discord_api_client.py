@@ -2,7 +2,6 @@
 import os
 from typing import final
 import discord as discord_python
-from dotenv import load_dotenv
 from typing import final, Callable
 # Custom Modules
 from .discord_webhook import DiscordRoutes
@@ -18,7 +17,6 @@ class DiscordAPIClient(object):
 
     def __init__(self) -> None:
         super().__init__()
-        load_dotenv(dotenv_path="./webhooks/staging/.env")
         self.__client = discord_python.Client()
         self._routes = DiscordRoutes()
         return None
