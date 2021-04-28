@@ -1,7 +1,6 @@
 # Global Modules
 import sys
 import traceback
-from dotenv import load_dotenv
 from multiprocessing import Process, Manager
 # Custom Modules
 from classes.feed_item import FeedItem
@@ -14,7 +13,7 @@ def process_feed(feed: dict, ad: dict, err_list: list, exisiting_links: dict = {
         feed_item = FeedItem(feed, exisiting_links)
         feed_item.get_feed().save()
 
-        if feed["display_ad"]:
+        if (feed["display_ad"]) and (ad is not None):
             ad_item = FeedItem(ad)
             ad_item.get_feed().save()
         return
@@ -33,7 +32,6 @@ def process_feed(feed: dict, ad: dict, err_list: list, exisiting_links: dict = {
 
 
 def main(feeds: dict):
-    load_dotenv(dotenv_path="./webhooks/staging/.env")
     ad_counter = -1
     discord_api = DiscordAPIClient()
     feed_errors = ObjectListCustomExceptionWrapper('feed_errors')
@@ -43,9 +41,11 @@ def main(feeds: dict):
         feed_errors.custom_exceptions = manager.list([])
 
         for feed in feeds['feeds']:
-            ad_counter = ad_counter + \
-                1 if ad_counter < (len(feeds['ads']) - 1) else -1
-            ad = feeds['ads'][ad_counter]
+            ad = None
+            if len(feeds['ads']) > 0:
+                ad_counter = ad_counter + \
+                    1 if ad_counter < (len(feeds['ads']) - 1) else -1
+                ad = feeds['ads'][ad_counter]
 
             p = Process(target=process_feed, args=(
                 feed, ad, feed_errors.custom_exceptions, links))

@@ -11,6 +11,10 @@ class NoFeedItemReaderException(Exception):
     pass
 
 
+class NoFeedItemException(Exception):
+    pass
+
+
 class FeedItem(object):
 
     _reader: ReaderAbstract = None
@@ -18,6 +22,8 @@ class FeedItem(object):
     _webhooks = []
 
     def __init__(self, feed: dict, exisiting_links: dict = {}) -> None:
+        if (feed is None):
+            raise NoFeedItemException("No feed item was provided.")
         super().__init__()
         self._webhooks = []
         self._feed = feed
