@@ -27,7 +27,7 @@ class FeedItem(object):
         if (feed is None):
             raise NoFeedItemException("No feed item was provided.")
         super().__init__()
-        self._exisiting_links = feed['exisiting_links']
+        self._exisiting_links = feed['existing_links']
         self._webhooks = []
         self._feed = feed
         self._reader = ReaderFactory(self._feed['type']).reader
@@ -59,7 +59,9 @@ class FeedItem(object):
         if (self._feed['type'] == 'basic-ad') and (channel_prefix == 'supporter'):
             return False
 
-        if (StringUtils.sanitize_url(url) == self._feed['last_msgs'][channel]):
+        clean_url = StringUtils.sanitize_url(url)
+        last_url = self._feed['last_msgs'][channel]
+        if (clean_url == last_url):
             return False
 
         return True

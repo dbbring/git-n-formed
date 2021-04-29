@@ -42,18 +42,20 @@ def main(feeds: dict):
 
         for feed in feeds['feeds']:
             feed['last_msgs'] = last_msgs
-            feed['exisiting_links'] = links
+            feed['existing_links'] = links
 
             ad = None
             ad_idx = int(feed["ad_index"])
             if ad_idx:
                 ad = feeds["ads"][ad_idx - 1]  # Ad index is 1 based
+                ad['last_msgs'] = last_msgs
+                ad['existing_links'] = {}
 
             p = Process(target=process_feed, args=(
                 feed, ad, feed_errors.custom_exceptions))
             p.start()
-            p.join()  # Uncomment for debugging / comment line below
-            # processes.append(p)
+            # p.join()  # Uncomment for debugging / comment line below
+            processes.append(p)
 
         for proc in processes:
             proc.join()
