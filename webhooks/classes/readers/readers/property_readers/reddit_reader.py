@@ -2,7 +2,6 @@
 from __future__ import annotations
 import praw
 import os
-from dotenv import load_dotenv
 import datetime
 # Custom Modules
 from ._property_reader_abstract import PropertyReaderAbstract
@@ -26,7 +25,6 @@ class RedditReader(PropertyReaderAbstract):
 
     def __init__(self):
         super().__init__()
-        load_dotenv()
         self.properties = {
             "ups": 0,
             "max_reddit_posts": 25

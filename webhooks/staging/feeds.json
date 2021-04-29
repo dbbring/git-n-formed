@@ -1,49 +1,48 @@
 {
   "feeds": [
     {
-      "display_ad": true,
-      "url": "#bugbountytips",
+      "ad_index": 1,
+      "url": "@official_php",
       "type": "twitter",
       "type_properties": {
-        "allow_retweets": false,
         "max_search_tweets": 25
-      },
-      "channels": [
-        "free-security"
-      ]
-    },
-    {
-      "display_ad": true,
-      "url": "programming",
-      "type": "reddit",
-      "type_properties": {
-        "ups": 5,
-        "max_reddit_posts": 25
       },
       "channels": [
         "free-dev"
       ]
     },
     {
-      "display_ad": false,
+      "ad_index": 1,
+      "url": "programming",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 10,
+        "max_reddit_posts": 10
+      },
+      "channels": [
+        "free-dev"
+      ]
+    },
+    {
+      "ad_index": 0,
       "url": "https://xkcd.com/atom.xml",
       "type": "rss",
-      "type_properties": {},
+      "type_properties": {
+        "max_rss_entries": 10
+      },
       "channels": [
-        "free-dev",
-        "free-cloud",
-        "free-security",
-        "free-dev-ops",
-        "free-systems"
+        "free-dev"
       ]
     }
   ],
   "ads": [
     {
+      "index": 1,
       "url": "https://www.patreon.com/gITnFormed",
       "type": "basic-ad",
       "channels": [
-        "free-dev"
+        "free-dev",
+        "free-security"
       ],
       "type_properties": {
         "message": "\n\nPlease consider supporting gIT-n-Formed. Donating supports continued development of new features and provides continued support of operations!"

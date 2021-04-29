@@ -2,7 +2,6 @@
 import os
 from typing import final
 import discord as discord_python
-from dotenv import load_dotenv
 from typing import final, Callable
 # Custom Modules
 from .discord_webhook import DiscordRoutes
@@ -15,12 +14,14 @@ class DiscordAPIClient(object):
     __client: discord_python.Client = None
     _routes: DiscordRoutes = None
     channel_history: dict = {}  # {'channel': set(links: str)}
+    channel_last_msg: dict = {}  # {'channel': link: str}
 
     def __init__(self) -> None:
         super().__init__()
-        load_dotenv()
         self.__client = discord_python.Client()
         self._routes = DiscordRoutes()
+        self.channel_history = {}
+        self.channel_last_msg = {}
         return None
 
     def __process_func(self, async_function: Callable[[], None]) -> None:
@@ -42,6 +43,8 @@ class DiscordAPIClient(object):
             if discord_channel is not None:
                 messages = await discord_channel.history(limit=self.__MAX_MESSAGE_LIMIT).flatten()
                 self.channel_history[channel] = messages
+                self.channel_last_msg[channel] = StringUtils.sanitize_url(
+                    StringUtils.extract_url(messages[0].content)) if len(messages) else ''
         return
 
     def __process_channel_messages(self, message_list: list) -> set:
@@ -53,13 +56,24 @@ class DiscordAPIClient(object):
                 sanitized_url_list.add(url)
         return sanitized_url_list
 
-    def __process_messages(self) -> dict:
+    def __process_messages(self) -> None:
         for channel in self.channel_history.keys():
             channel_messages = self.channel_history[channel]
             self.channel_history[channel] = self.__process_channel_messages(
                 channel_messages)
-        return self.channel_history
+        return
+
+    def get_history(self):
+        self.__process_func(self.__fetch_messages())
+        return self
 
     def get_existing_links(self) -> dict:
-        self.__process_func(self.__fetch_messages())
-        return self.__process_messages()
+        if len(self.channel_history.keys()) == 0:
+            self.get_history()
+            self.__process_messages()
+        return self.channel_history
+
+    def get_last_messages(self) -> dict:
+        if len(self.channel_last_msg.keys()) == 0:
+            self.get_history()
+        return self.channel_last_msg

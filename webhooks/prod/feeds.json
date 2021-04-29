@@ -1,0 +1,309 @@
+{
+  "feeds": [
+    {
+      "display_ad": true,
+      "url": "#bugbountytips",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "free-security",
+        "supporter-security"
+      ]
+    },
+    {
+      "display_ad": false,
+      "url": "https://us-cert.cisa.gov/ncas/current-activity.xml",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 10
+      },
+      "channels": [
+        "supporter-security"
+      ]
+    },
+    {
+      "display_ad": true,
+      "url": "programming",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 10,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "free-dev",
+        "supporter-dev"
+      ]
+    },
+    {
+      "display_ad": false,
+      "url": "https://www.blackhillsinfosec.com/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 10
+      },
+      "channels": [
+        "supporter-security"
+      ]
+    },
+    {
+      "display_ad": true,
+      "url": "@nodejs",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "free-dev",
+        "supporter-dev"
+      ]
+    },
+    {
+      "display_ad": false,
+      "url": "https://portswigger.net/blog/rss",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 10
+      },
+      "channels": [
+        "supporter-security"
+      ]
+    },
+    {
+      "display_ad": true,
+      "url": "netsec",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 10,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "free-security",
+        "supporter-security"
+      ]
+    },
+    {
+      "display_ad": false,
+      "url": "https://xkcd.com/atom.xml",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 10
+      },
+      "channels": [
+        "free-dev",
+        "free-cloud",
+        "free-security",
+        "free-dev-ops",
+        "free-systems",
+        "supporter-dev",
+        "supporter-cloud",
+        "supporter-security",
+        "supporter-dev-ops",
+        "supporter-systems"
+      ]
+    },
+    {
+      "display_ad": false,
+      "url": "https://4sysops.com/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 10
+      },
+      "channels": [
+        "free-systems",
+        "free-cloud",
+        "supporter-systems",
+        "supporter-cloud"
+      ]
+    },
+    {
+      "display_ad": false,
+      "url": "https://www.pcworld.com/column/the-full-nerd/index.rss",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 10
+      },
+      "channels": [
+        "free-systems",
+        "supporter-systems"
+      ]
+    },
+    {
+      "display_ad": false,
+      "url": "https://absoluteappsec.com/rss.xml",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 1000
+      },
+      "channels": [
+        "free-security",
+        "supporter-security"
+      ]
+    },
+    {
+      "display_ad": false,
+      "url": "https://www.pcworld.com/index.rss",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 50
+      },
+      "channels": [
+        "free-systems",
+        "supporter-systems"
+      ]
+    },
+    {
+      "display_ad": false,
+      "url": "https://feeds.feedburner.com/TheHackersNews?format=xml",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 20
+      },
+      "channels": [
+        "supporter-security"
+      ]
+    },
+    {
+      "display_ad": false,
+      "url": "https://aws.amazon.com/blogs/devops/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 10
+      },
+      "channels": [
+        "free-dev-ops",
+        "supporter-dev-ops"
+      ]
+    },
+    {
+      "display_ad": false,
+      "url": "https://devops.com/category/blogs/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 20
+      },
+      "channels": [
+        "supporter-dev-ops"
+      ]
+    },
+    {
+      "display_ad": false,
+      "url": "https://devblogs.microsoft.com/devops/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 10
+      },
+      "channels": [
+        "free-dev-ops",
+        "supporter-dev-ops"
+      ]
+    },
+    {
+      "display_ad": false,
+      "url": "https://devblogs.microsoft.com/premier-developer/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 10
+      },
+      "channels": [
+        "free-dev"
+      ]
+    },
+    {
+      "display_ad": false,
+      "url": "https://devblogs.microsoft.com/performance-diagnostics/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 10
+      },
+      "channels": [
+        "free-systems",
+        "supporter-systems"
+      ]
+    },
+    {
+      "display_ad": false,
+      "url": "https://devblogs.microsoft.com/commandline/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 10
+      },
+      "channels": [
+        "supporter-dev",
+        "supporter-cloud",
+        "supporter-dev-ops",
+        "supporter-systems"
+      ]
+    },
+    {
+      "display_ad": false,
+      "url": "https://aws.amazon.com/blogs/database/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 10
+      },
+      "channels": [
+        "free-database",
+        "supporter-database"
+      ]
+    },
+    {
+      "display_ad": false,
+      "url": "https://www.bleepingcomputer.com/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 10
+      },
+      "channels": [
+        "supporter-security"
+      ]
+    },
+    {
+      "display_ad": false,
+      "url": "https://feeds.arstechnica.com/arstechnica/gadgets?format=xml",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 10
+      },
+      "channels": [
+        "free-systems",
+        "supporter-systems"
+      ]
+    },
+    {
+      "display_ad": false,
+      "url": "https://www.fireeye.com/blog/threat-research/_jcr_content.feed",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 10
+      },
+      "channels": [
+        "supporter-security"
+      ]
+    },
+    {
+      "display_ad": false,
+      "url": "https://levelup.gitconnected.com/feed",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 25
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    }
+  ],
+  "ads": [
+    {
+      "url": "https://www.patreon.com/gITnFormed",
+      "type": "basic-ad",
+      "channels": [
+        "free-dev"
+      ],
+      "type_properties": {
+        "message": "\n\nPlease consider supporting gIT-n-Formed. Donating supports continued development of new features and provides continued support of operations!"
+      }
+    }
+  ]
+}

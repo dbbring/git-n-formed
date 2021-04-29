@@ -2,7 +2,6 @@
 import os
 from typing import final
 from discord import Webhook, RequestsWebhookAdapter
-from dotenv import load_dotenv
 # Custom Modules
 from ..post_items.post_item import PostItem
 from ..utils.string_utils import StringUtils
@@ -13,7 +12,6 @@ class DiscordRoutes(object):
     _channels: dict = {}
 
     def __init__(self) -> None:
-        load_dotenv()
 
         self.__FREE_DEV: final = {
             'id': int(os.getenv('FREE_DEV_ID')),

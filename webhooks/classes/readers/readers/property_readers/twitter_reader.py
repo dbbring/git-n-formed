@@ -3,7 +3,6 @@ from __future__ import annotations
 import os
 import datetime
 import tweepy
-from dotenv import load_dotenv
 # Custom Modules
 from ._property_reader_abstract import PropertyReaderAbstract
 from ....post_items.post_item import PostItem
@@ -25,7 +24,6 @@ class TwitterReader(PropertyReaderAbstract):
     properties = {}
 
     def __init__(self) -> None:
-        load_dotenv()
         self.__authenticate()
         self._content_list = []
         self.post_items = []
@@ -55,19 +53,9 @@ class TwitterReader(PropertyReaderAbstract):
 
         return False
 
-    def __verify_retweet_status(self, tweet) -> bool:
-        if self.properties["allow_retweets"]:
-            return True
-
-        try:
-            tweet.retweeted_status.text
-            return False  # This is a retweet and we specifed no retweets
-        except AttributeError:  # Not a Retweet
-            return True
-
     def __get_latest_content(self) -> None:
         for tweet in self._content_list:
-            if self.__is_current_tweet(tweet) and self.__verify_retweet_status(tweet):
+            if self.__is_current_tweet(tweet):
                 self.post_items.append(
                     self._to_post_item(tweet))
         return
@@ -91,7 +79,8 @@ class TwitterReader(PropertyReaderAbstract):
             content='', link='https://twitter.com/i/web/status/' + tweet.id_str)
 
     def fetch(self, url: str) -> TwitterReader:
+        extra_params = "+exclude:replies+exclude:retweets"
         self._content_list = tweepy.Cursor(
-            self.__api.search, q=url).items(self.properties["max_search_tweets"])
+            self.__api.search, q=url + extra_params).items(self.properties["max_search_tweets"])
         self.__parse_content()
         return self
