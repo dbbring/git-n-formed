@@ -49,7 +49,7 @@
     },
     {
       "display_ad": true,
-      "url": "#coding",
+      "url": "@nodejs",
       "type": "twitter",
       "type_properties": {
         "max_search_tweets": 250
@@ -280,6 +280,17 @@
       },
       "channels": [
         "supporter-security"
+      ]
+    },
+    {
+      "display_ad": false,
+      "url": "https://levelup.gitconnected.com/feed",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 25
+      },
+      "channels": [
+        "supporter-dev"
       ]
     }
   ],
