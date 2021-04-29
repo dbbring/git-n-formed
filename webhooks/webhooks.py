@@ -1,4 +1,5 @@
 # Global Modules
+import argparse
 import json
 import os
 import sys
@@ -10,16 +11,19 @@ from classes.exception_helpers.custom_exception_wrapper import CustomExceptionWr
 
 
 # ======================================================================
-
+help_msg = "--env specifies the current running environment, either staging or prod."
 
 if __name__ == '__main__':
 
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--env", help="", type=str)
+    args = parser.parse_args()
+
     main_errors = ObjectListCustomExceptionWrapper('main_errors')
-    ENVIRONMENT = 'staging'
 
     try:
-        load_dotenv(dotenv_path="./webhooks/" + ENVIRONMENT + "/.env")
-        with open(os.path.dirname(__file__) + '/' + ENVIRONMENT + '/feeds.json') as f:
+        load_dotenv(dotenv_path="./webhooks/" + args.env + "/.env")
+        with open(os.path.dirname(__file__) + '/' + args.env + '/feeds.json') as f:
             feeds = json.load(f)
 
         main(feeds)
