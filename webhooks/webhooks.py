@@ -22,7 +22,8 @@ if __name__ == '__main__':
     main_errors = ObjectListCustomExceptionWrapper('main_errors')
 
     try:
-        load_dotenv(dotenv_path="./webhooks/" + args.env + "/.env")
+        load_dotenv(dotenv_path=os.path.dirname(
+            __file__) + '/' + args.env + "/.env")
         with open(os.path.dirname(__file__) + '/' + args.env + '/feeds.json') as f:
             feeds = json.load(f)
 
