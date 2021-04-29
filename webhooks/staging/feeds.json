@@ -1,7 +1,7 @@
 {
   "feeds": [
     {
-      "display_ad": true,
+      "ad_index": 1,
       "url": "@official_php",
       "type": "twitter",
       "type_properties": {
@@ -12,7 +12,7 @@
       ]
     },
     {
-      "display_ad": true,
+      "ad_index": 1,
       "url": "programming",
       "type": "reddit",
       "type_properties": {
@@ -24,14 +24,28 @@
       ]
     },
     {
-      "display_ad": false,
+      "ad_index": 0,
       "url": "https://xkcd.com/atom.xml",
       "type": "rss",
-      "type_properties": {},
+      "type_properties": {
+        "max_rss_entries": 10
+      },
       "channels": [
         "free-dev"
       ]
     }
   ],
-  "ads": []
+  "ads": [
+    {
+      "index": 1,
+      "url": "https://www.patreon.com/gITnFormed",
+      "type": "basic-ad",
+      "channels": [
+        "free-dev"
+      ],
+      "type_properties": {
+        "message": "\n\nPlease consider supporting gIT-n-Formed. Donating supports continued development of new features and provides continued support of operations!"
+      }
+    }
+  ]
 }

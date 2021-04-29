@@ -8,12 +8,12 @@ from classes.discord_helpers.discord_api_client import DiscordAPIClient
 from classes.exception_helpers.custom_exception_wrapper import CustomExceptionWrapper, ObjectListCustomExceptionWrapper
 
 
-def process_feed(feed: dict, ad: dict, err_list: list, exisiting_links: dict = {}):
+def process_feed(feed: dict, ad: dict, err_list: list):
     try:
-        feed_item = FeedItem(feed, exisiting_links)
+        feed_item = FeedItem(feed)
         feed_item.get_feed().save()
 
-        if (feed["display_ad"]) and (ad is not None):
+        if (ad is not None):
             ad_item = FeedItem(ad)
             ad_item.get_feed().save()
         return
@@ -23,7 +23,6 @@ def process_feed(feed: dict, ad: dict, err_list: list, exisiting_links: dict = {
         err.orig_exception = e.with_traceback(tracebk[2])
         err.func_args['ad'] = ad
         err.func_args['feed'] = feed
-        err.func_args['exist-links'] = exisiting_links
         err.stack_trace = "Stack Trace:\n{}".format(
             "".join(traceback.format_exception(type(e), e, e.__traceback__)))
 
@@ -32,25 +31,32 @@ def process_feed(feed: dict, ad: dict, err_list: list, exisiting_links: dict = {
 
 
 def main(feeds: dict):
-    ad_counter = -1
     discord_api = DiscordAPIClient()
     feed_errors = ObjectListCustomExceptionWrapper('feed_errors')
+    processes = []
 
     with Manager() as manager:
         links = discord_api.get_existing_links()
+        last_msgs = discord_api.get_last_messages()
         feed_errors.custom_exceptions = manager.list([])
 
         for feed in feeds['feeds']:
+            feed['last_msgs'] = last_msgs
+            feed['exisiting_links'] = links
+
             ad = None
-            if len(feeds['ads']) > 0:
-                ad_counter = ad_counter + \
-                    1 if ad_counter < (len(feeds['ads']) - 1) else -1
-                ad = feeds['ads'][ad_counter]
+            ad_idx = int(feed["ad_index"])
+            if ad_idx:
+                ad = feeds["ads"][ad_idx - 1]  # Ad index is 1 based
 
             p = Process(target=process_feed, args=(
-                feed, ad, feed_errors.custom_exceptions, links))
+                feed, ad, feed_errors.custom_exceptions))
             p.start()
-            p.join()
+            p.join()  # Uncomment for debugging / comment line below
+            # processes.append(p)
+
+        for proc in processes:
+            proc.join()
 
         feed_errors.save()
     return
