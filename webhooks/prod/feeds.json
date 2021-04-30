@@ -1,7 +1,7 @@
 {
   "feeds": [
     {
-      "display_ad": true,
+      "ad_index": 1,
       "url": "#bugbountytips",
       "type": "twitter",
       "type_properties": {
@@ -13,7 +13,7 @@
       ]
     },
     {
-      "display_ad": false,
+      "ad_index": 1,
       "url": "https://us-cert.cisa.gov/ncas/current-activity.xml",
       "type": "rss",
       "type_properties": {
@@ -24,7 +24,7 @@
       ]
     },
     {
-      "display_ad": true,
+      "ad_index": 1,
       "url": "programming",
       "type": "reddit",
       "type_properties": {
@@ -37,7 +37,7 @@
       ]
     },
     {
-      "display_ad": false,
+      "ad_index": 1,
       "url": "https://www.blackhillsinfosec.com/feed/",
       "type": "rss",
       "type_properties": {
@@ -48,7 +48,7 @@
       ]
     },
     {
-      "display_ad": true,
+      "ad_index": 1,
       "url": "@nodejs",
       "type": "twitter",
       "type_properties": {
@@ -60,7 +60,19 @@
       ]
     },
     {
-      "display_ad": false,
+      "ad_index": 1,
+      "url": "@official_php",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "free-dev",
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
       "url": "https://portswigger.net/blog/rss",
       "type": "rss",
       "type_properties": {
@@ -71,7 +83,7 @@
       ]
     },
     {
-      "display_ad": true,
+      "ad_index": 1,
       "url": "netsec",
       "type": "reddit",
       "type_properties": {
@@ -84,7 +96,7 @@
       ]
     },
     {
-      "display_ad": false,
+      "ad_index": 1,
       "url": "https://xkcd.com/atom.xml",
       "type": "rss",
       "type_properties": {
@@ -104,7 +116,7 @@
       ]
     },
     {
-      "display_ad": false,
+      "ad_index": 1,
       "url": "https://4sysops.com/feed/",
       "type": "rss",
       "type_properties": {
@@ -118,7 +130,7 @@
       ]
     },
     {
-      "display_ad": false,
+      "ad_index": 1,
       "url": "https://www.pcworld.com/column/the-full-nerd/index.rss",
       "type": "rss",
       "type_properties": {
@@ -130,7 +142,7 @@
       ]
     },
     {
-      "display_ad": false,
+      "ad_index": 1,
       "url": "https://absoluteappsec.com/rss.xml",
       "type": "rss",
       "type_properties": {
@@ -142,7 +154,7 @@
       ]
     },
     {
-      "display_ad": false,
+      "ad_index": 1,
       "url": "https://www.pcworld.com/index.rss",
       "type": "rss",
       "type_properties": {
@@ -154,7 +166,7 @@
       ]
     },
     {
-      "display_ad": false,
+      "ad_index": 1,
       "url": "https://feeds.feedburner.com/TheHackersNews?format=xml",
       "type": "rss",
       "type_properties": {
@@ -165,7 +177,7 @@
       ]
     },
     {
-      "display_ad": false,
+      "ad_index": 1,
       "url": "https://aws.amazon.com/blogs/devops/feed/",
       "type": "rss",
       "type_properties": {
@@ -177,7 +189,7 @@
       ]
     },
     {
-      "display_ad": false,
+      "ad_index": 1,
       "url": "https://devops.com/category/blogs/feed/",
       "type": "rss",
       "type_properties": {
@@ -188,7 +200,7 @@
       ]
     },
     {
-      "display_ad": false,
+      "ad_index": 1,
       "url": "https://devblogs.microsoft.com/devops/feed/",
       "type": "rss",
       "type_properties": {
@@ -200,30 +212,30 @@
       ]
     },
     {
-      "display_ad": false,
+      "ad_index": 1,
       "url": "https://devblogs.microsoft.com/premier-developer/feed/",
       "type": "rss",
       "type_properties": {
         "max_rss_entries": 10
       },
       "channels": [
-        "free-dev"
+        "free-dev",
+        "supporter-dev"
       ]
     },
     {
-      "display_ad": false,
+      "ad_index": 1,
       "url": "https://devblogs.microsoft.com/performance-diagnostics/feed/",
       "type": "rss",
       "type_properties": {
         "max_rss_entries": 10
       },
       "channels": [
-        "free-systems",
         "supporter-systems"
       ]
     },
     {
-      "display_ad": false,
+      "ad_index": 1,
       "url": "https://devblogs.microsoft.com/commandline/feed/",
       "type": "rss",
       "type_properties": {
@@ -237,7 +249,7 @@
       ]
     },
     {
-      "display_ad": false,
+      "ad_index": 1,
       "url": "https://aws.amazon.com/blogs/database/feed/",
       "type": "rss",
       "type_properties": {
@@ -249,7 +261,7 @@
       ]
     },
     {
-      "display_ad": false,
+      "ad_index": 1,
       "url": "https://www.bleepingcomputer.com/feed/",
       "type": "rss",
       "type_properties": {
@@ -260,7 +272,7 @@
       ]
     },
     {
-      "display_ad": false,
+      "ad_index": 1,
       "url": "https://feeds.arstechnica.com/arstechnica/gadgets?format=xml",
       "type": "rss",
       "type_properties": {
@@ -272,7 +284,7 @@
       ]
     },
     {
-      "display_ad": false,
+      "ad_index": 1,
       "url": "https://www.fireeye.com/blog/threat-research/_jcr_content.feed",
       "type": "rss",
       "type_properties": {
@@ -283,7 +295,7 @@
       ]
     },
     {
-      "display_ad": false,
+      "ad_index": 1,
       "url": "https://levelup.gitconnected.com/feed",
       "type": "rss",
       "type_properties": {
@@ -296,10 +308,16 @@
   ],
   "ads": [
     {
+      "index": 1,
       "url": "https://www.patreon.com/gITnFormed",
       "type": "basic-ad",
       "channels": [
-        "free-dev"
+        "free-dev",
+        "free-security",
+        "free-database",
+        "free-dev-ops",
+        "free-systems",
+        "free-cloud"
       ],
       "type_properties": {
         "message": "\n\nPlease consider supporting gIT-n-Formed. Donating supports continued development of new features and provides continued support of operations!"
