@@ -30,7 +30,7 @@ def process_feed(feed: dict, ad: dict, err_list: list):
         return
 
 
-def main(feeds: dict):
+def main(feeds: dict, debug: bool = False):
     discord_api = DiscordAPIClient()
     feed_errors = ObjectListCustomExceptionWrapper('feed_errors')
     processes = []
@@ -54,8 +54,11 @@ def main(feeds: dict):
             p = Process(target=process_feed, args=(
                 feed, ad, feed_errors.custom_exceptions))
             p.start()
-            # p.join()  # Uncomment for debugging / comment line below
-            processes.append(p)
+
+            if debug:
+                p.join()
+            else:
+                processes.append(p)
 
         for proc in processes:
             proc.join()

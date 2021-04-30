@@ -11,12 +11,14 @@ from classes.exception_helpers.custom_exception_wrapper import CustomExceptionWr
 
 
 # ======================================================================
-help_msg = "--env specifies the current running environment, either staging or prod."
+env_help_msg = "--env specifies the current running environment, either staging or prod."
+debug_help_msg = "Runs processes on single core. Allows to step though code line by line."
 
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--env", help="", type=str)
+    parser.add_argument("--env", help=env_help_msg, type=str)
+    parser.add_argument("--debug", help=debug_help_msg, type=bool)
     args = parser.parse_args()
 
     main_errors = ObjectListCustomExceptionWrapper('main_errors')
@@ -27,7 +29,7 @@ if __name__ == '__main__':
         with open(os.path.dirname(__file__) + '/' + args.env + '/feeds.json') as f:
             feeds = json.load(f)
 
-        main(feeds)
+        main(feeds, args.debug)
     except Exception as e:
         tracebk = sys.exc_info()
         err = CustomExceptionWrapper()
