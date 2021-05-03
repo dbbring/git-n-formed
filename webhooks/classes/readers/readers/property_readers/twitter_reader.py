@@ -5,7 +5,7 @@ import datetime
 import tweepy
 # Custom Modules
 from ._property_reader_abstract import PropertyReaderAbstract
-from ....post_items.post_item import PostItem
+from ....post_items.items import PostItem
 from ....utils.string_utils import StringUtils
 
 
@@ -17,7 +17,7 @@ class TwitterReader(PropertyReaderAbstract):
 
     __api = None
     # List[Post_Items]
-    post_items = []
+    post_items: filter = []
     # List[content_items] content items being whatever native structure the reader gets
     _content_list: list = []
     # Optionable args from feed json

@@ -4,7 +4,7 @@ import datetime
 import feedparser
 # Custom Modules
 from ._property_reader_abstract import PropertyReaderAbstract
-from ....post_items.post_item import PostItem
+from ....post_items.items import PostItem
 from ....utils.string_utils import StringUtils
 
 

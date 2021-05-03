@@ -2,7 +2,7 @@
 from __future__ import annotations
 # Custom Modules
 from ._property_reader_abstract import PropertyReaderAbstract
-from ....post_items.post_item import PostItem
+from ....post_items.items import PostItem, AdItem
 from ....utils.string_utils import StringUtils
 
 
@@ -21,7 +21,7 @@ class BasicAdReader(PropertyReaderAbstract):
         return
 
     def _to_post_item(self, url) -> PostItem:
-        return PostItem(self.properties["message"], url)
+        return AdItem(self.properties["message"], url)
 
     def _is_valid_link(self, post_item: PostItem) -> bool:
         if post_item.link == '':

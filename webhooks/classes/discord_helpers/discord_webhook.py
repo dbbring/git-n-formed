@@ -3,7 +3,7 @@ import os
 from typing import final
 from discord import Webhook, RequestsWebhookAdapter
 # Custom Modules
-from ..post_items.post_item import PostItem
+from ..post_items.items import PostItem, AdItem
 from ..utils.string_utils import StringUtils
 
 
