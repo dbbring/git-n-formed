@@ -17,15 +17,17 @@ class NoFeedItemException(Exception):
 
 class FeedItem(object):
 
-    reader: ReaderAbstract = None
+    __postAd: bool = False
     _feed = {}
     _webhooks = []
     _exisiting_links = {}
+    reader: ReaderAbstract = None
 
     def __init__(self, feed: dict) -> None:
         if (feed is None):
             raise NoFeedItemException("No feed item was provided.")
         super().__init__()
+        self.__postAd = False
         self._exisiting_links = feed['existing_links']
         self._webhooks = []
         self._feed = feed
@@ -82,7 +84,8 @@ class FeedItem(object):
             if self.__can_post(webhook.channel, post_item) == False:
                 continue
 
-            webhook.post(post_item)
+            if webhook.post(post_item):
+                self.__postAd = True
         return
 
     def get_feed(self) -> FeedItem:
@@ -92,12 +95,10 @@ class FeedItem(object):
 
     def save(self) -> FeedItem:
         post: PostItem
-        postAd: bool = False  # Filter obj has no len
 
         for post in self.reader.post_items:
-            postAd = True
             self.post_to_discord(post)
 
-        if postAd:
+        if self.__postAd:
             self._save_ad()
         return self

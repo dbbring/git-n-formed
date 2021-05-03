@@ -149,8 +149,10 @@ class DiscordWebhook(object):
     def _build_msg(self, post: PostItem) -> str:
         return post.content + ' \n\n  ' + post.link
 
-    def post(self, post_item: PostItem) -> None:
+    def post(self, post_item: PostItem) -> bool:
         if self._is_valid_post_item(post_item):
             msg = self._build_msg(post_item)
             self._webhook.send(content=msg, embed=post_item.embed)
-        return
+            return True
+
+        return False
