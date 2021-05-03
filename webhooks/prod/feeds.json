@@ -304,6 +304,115 @@
       "channels": [
         "supporter-dev"
       ]
+    },
+    {
+      "ad_index": 1,
+      "url": "@mariadb_org",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "free-database",
+        "supporter-database"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "@MySQL",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "free-database",
+        "supporter-database"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "@awscloud",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "free-cloud",
+        "supporter-cloud"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "@Docker",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "supporter-dev-ops"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "@Azure",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "free-cloud",
+        "supporter-cloud"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "#cloudcomputing",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "supporter-cloud"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "sysadmin",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 10,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "free-systems",
+        "supporter-systems"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "Database",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 10,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "free-database",
+        "supporter-database"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "cloudcomputing",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 10,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "free-cloud",
+        "supporter-cloud"
+      ]
     }
   ],
   "ads": [

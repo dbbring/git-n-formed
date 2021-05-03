@@ -8,7 +8,8 @@
         "max_search_tweets": 25
       },
       "channels": [
-        "free-dev"
+        "free-dev",
+        "supporter-dev"
       ]
     },
     {
