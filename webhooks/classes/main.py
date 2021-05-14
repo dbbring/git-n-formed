@@ -5,6 +5,7 @@ import random
 from multiprocessing import Process, Manager, Queue
 # Custom Modules
 from .feed_items.feed_item import FeedItem
+from.discord_helpers.discord_webhook import DiscordRoutes
 from .discord_helpers.discord_api_client import DiscordAPIClient
 from .exception_helpers.custom_exception_wrapper import CustomExceptionWrapper, ObjectListCustomExceptionWrapper
 
@@ -21,6 +22,22 @@ class Main():
         self.__final_msgs = []
         self.__existing_links = discord_api.get_existing_links()
         return
+
+    def __shuffle_msgs_by_channel(self, dirty_msg_list: list) -> list:
+        sorted_msgs = {}
+        result = []
+        routes = DiscordRoutes()
+
+        for channel in  routes.get_all_channels:
+            sorted_msgs[channel] = []
+
+        for msg in dirty_msg_list:
+            sorted_msgs[msg.channel].append(msg)
+
+        for channel in sorted_msgs.keys():
+            random.shuffle(sorted_msgs[channel])
+            result += sorted_msgs[channel]
+        return result
 
     def process_feed(self, feed: dict, output_queue: Queue, err_list: list):
         try:
@@ -64,9 +81,7 @@ class Main():
         return feed
 
     def finalize(self):
-        # sort final list by channel so we are "shuffling" each channels own messages
-        random.shuffle(self.__final_msgs)
-        # multithread here?
+        self.__final_msgs = self.__shuffle_msgs_by_channel(self.__final_msgs)
         for msg in self.__final_msgs:
             msg.post()
         return
