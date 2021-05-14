@@ -97,35 +97,56 @@ class DiscordRoutes(object):
         return int(self._channels[channel]['chan_id'])
 
 
-class InvalidChannelDiscordWebhookException(Exception):
+class InvalidChannelDiscordMessageException(Exception):
     pass
+
+
+class DiscordMessage(object):
+
+    post_item: PostItem = None
+    channel: str = ''
+
+    def __init__(self, channel: str, post_item: PostItem) -> None:
+        if len(channel) == 0:
+            raise InvalidChannelDiscordMessageException(
+                "Channel must not be empty.")
+
+        super().__init__()
+        self.channel = channel
+        self.post_item = post_item
+
+    def __build_content(self, post: PostItem) -> str:
+        return post.content + ' \n\n  ' + post.link
+
+    def __get_webhook(self):
+        _routes = DiscordRoutes()
+        webhook = Webhook.partial(
+            _routes._channels[self.channel]['id'], _routes._channels[self.channel]['token'], adapter=RequestsWebhookAdapter())
+
+        if webhook == None:
+            raise InvalidWebhookException(
+                "Failed to create discord python webhook.")
+
+        return webhook
+
+    def post(self):
+        webhook = self.__get_webhook()
+        content = self.__build_content(self.post_item)
+        webhook.send(content=content, embed=self.post_item.embed)
 
 
 class InvalidWebhookException(Exception):
     pass
 
 
-class DiscordWebhook(object):
+class DiscordMessageWrapper(object):
 
-    _webhook: Webhook = None
     channel: str = ''
     exisiting_links: dict = {}
 
     def __init__(self, channel: str, exisiting_links: dict) -> None:
-        if len(channel) == 0:
-            raise InvalidChannelDiscordWebhookException(
-                "Channel must not be empty.")
-
         self.channel = channel
         self.exisiting_links = exisiting_links
-        _routes = DiscordRoutes()
-
-        self._webhook = Webhook.partial(
-            _routes._channels[channel]['id'], _routes._channels[channel]['token'], adapter=RequestsWebhookAdapter())
-
-        if self._webhook == None:
-            raise InvalidWebhookException(
-                "Failed to create discord python webhook.")
         return
 
     def _is_already_posted(self, url: str) -> bool:
@@ -146,13 +167,8 @@ class DiscordWebhook(object):
 
         return True
 
-    def _build_msg(self, post: PostItem) -> str:
-        return post.content + ' \n\n  ' + post.link
-
-    def post(self, post_item: PostItem) -> bool:
+    def get_DiscordMessage(self, post_item: PostItem) -> DiscordMessage:
         if self._is_valid_post_item(post_item):
-            msg = self._build_msg(post_item)
-            self._webhook.send(content=msg, embed=post_item.embed)
-            return True
+            return DiscordMessage(self.channel, post_item)
 
-        return False
+        return None

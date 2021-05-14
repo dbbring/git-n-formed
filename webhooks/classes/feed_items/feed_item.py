@@ -1,10 +1,10 @@
 # Global Modules
 from __future__ import annotations
 # Custom Modules
-from .readers.readers.reader_abstract import ReaderAbstract
-from .readers.reader_factory import ReaderFactory
-from .post_items.items import PostItem, AdItem
-from .discord_helpers.discord_webhook import DiscordWebhook
+from ..readers.readers.reader_abstract import ReaderAbstract
+from ..readers.reader_factory import ReaderFactory
+from ..post_items.items import PostItem, AdItem
+from ..discord_helpers.discord_webhook import DiscordMessageWrapper
 
 
 class NoFeedItemReaderException(Exception):
@@ -17,9 +17,8 @@ class NoFeedItemException(Exception):
 
 class FeedItem(object):
 
-    __postAd: bool = False
     _feed = {}
-    _webhooks = []
+    message_wrappers = []
     _exisiting_links = {}
     reader: ReaderAbstract = None
 
@@ -27,24 +26,23 @@ class FeedItem(object):
         if (feed is None):
             raise NoFeedItemException("No feed item was provided.")
         super().__init__()
-        self.__postAd = False
         self._exisiting_links = feed['existing_links']
-        self._webhooks = []
+        self.message_wrappers = []
         self._feed = feed
         self.reader = ReaderFactory(self._feed['type']).reader
         self.__add_type_properties()
-        self.__add_webhooks()
+        self.__add_msg_wrappers()
 
         if self.reader is None:
             raise NoFeedItemReaderException('No reader present to get feed.')
         return
 
-    def __add_webhooks(self) -> None:
+    def __add_msg_wrappers(self) -> None:
         channel: str = ''
 
         for channel in self._feed['channels']:
-            webhook = DiscordWebhook(channel, self._exisiting_links)
-            self._webhooks.append(webhook)
+            msg_wrapper = DiscordMessageWrapper(channel, self._exisiting_links)
+            self.message_wrappers.append(msg_wrapper)
         return
 
     def __add_type_properties(self) -> None:
@@ -68,37 +66,29 @@ class FeedItem(object):
 
         return True
 
-    def _save_ad(self):
-        if self._feed['ad'] is not None:
-            ad = FeedItem(self._feed['ad'])
-            ad.get_feed()
+    def get_messages(self, post_item: PostItem) -> None:
+        msg: DiscordMessageWrapper = None
+        msg_list: list = []
 
-            for post in ad.reader.post_items:
-                ad.post_to_discord(post)
-        return
-
-    def post_to_discord(self, post_item: PostItem) -> None:
-        webhook: DiscordWebhook = None
-
-        for webhook in self._webhooks:
-            if self.__can_post(webhook.channel, post_item) == False:
+        for msg in self.message_wrappers:
+            if self.__can_post(msg.channel, post_item) == False:
                 continue
 
-            if webhook.post(post_item):
-                self.__postAd = True
-        return
+            msg = msg.get_DiscordMessage(post_item)
+            if msg is not None:
+                msg_list.append(msg)
+        return msg_list
 
     def get_feed(self) -> FeedItem:
         if len(self._feed['url']) > 0:
             self.reader.fetch(self._feed['url'])
         return self
 
-    def save(self) -> FeedItem:
+    def get_message_list(self) -> list:
         post: PostItem
+        messages: list = []
 
         for post in self.reader.post_items:
-            self.post_to_discord(post)
-
-        if self.__postAd:
-            self._save_ad()
-        return self
+            msgs = self.get_messages(post)
+            messages += msgs
+        return messages

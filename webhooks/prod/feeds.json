@@ -2,14 +2,398 @@
   "feeds": [
     {
       "ad_index": 1,
-      "url": "#bugbountytips",
+      "url": "https://css-tricks.com/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 50
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://css-tricks.com/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 20
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "cybersecurity",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 10,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-security"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "linux",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 10,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-systems"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "exchangeserver",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-systems"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "devops",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 10,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-dev-ops"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "ProgrammerHumor",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 50,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "webdev",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "SQLServer",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 1,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-database"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "@elastic",
       "type": "twitter",
       "type_properties": {
         "max_search_tweets": 250
       },
       "channels": [
-        "free-security",
+        "supporter-database"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://aws.amazon.com/blogs/aws/category/database/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 20
+      },
+      "channels": [
+        "supporter-database"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://krebsonsecurity.com/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 20
+      },
+      "channels": [
         "supporter-security"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "SQL",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 10,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-database"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "@chef",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "supporter-dev-ops"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "@RedisLabs",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "supporter-database"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "@PostgreSQL",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "supporter-database"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "@OracleDatabase",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "supporter-database"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "@MongoDB",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "supporter-database"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "@SQLServerGeeks",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "supporter-database"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "@CouchDB",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "supporter-database"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "@CockroachDB",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "supporter-database"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "@MySQL",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "supporter-database"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "@Azure",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "supporter-cloud"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "@awscloud",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "supporter-cloud"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "@mariadb_org",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "supporter-database"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://www.fireeye.com/blog/threat-research/_jcr_content.feed",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 10
+      },
+      "channels": [
+        "supporter-security"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://levelup.gitconnected.com/feed",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 25
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://devblogs.microsoft.com/commandline/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 10
+      },
+      "channels": [
+        "supporter-dev",
+        "supporter-cloud",
+        "supporter-dev-ops",
+        "supporter-systems"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "@official_php",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "@nodejs",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "@IOActive",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "supporter-security"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "#cloudcomputing",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "supporter-cloud"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "@Docker",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "supporter-dev-ops"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://www.bleepingcomputer.com/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 10
+      },
+      "channels": [
+        "supporter-security"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://devblogs.microsoft.com/performance-diagnostics/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 10
+      },
+      "channels": [
+        "supporter-systems"
       ]
     },
     {
@@ -25,15 +409,35 @@
     },
     {
       "ad_index": 1,
-      "url": "programming",
-      "type": "reddit",
+      "url": "https://devops.com/category/blogs/feed/",
+      "type": "rss",
       "type_properties": {
-        "ups": 10,
-        "max_reddit_posts": 100
+        "max_rss_entries": 20
       },
       "channels": [
-        "free-dev",
-        "supporter-dev"
+        "supporter-dev-ops"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://feeds.feedburner.com/TheHackersNews?format=xml",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 20
+      },
+      "channels": [
+        "supporter-security"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://portswigger.net/blog/rss",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 10
+      },
+      "channels": [
+        "supporter-security"
       ]
     },
     {
@@ -49,37 +453,39 @@
     },
     {
       "ad_index": 1,
-      "url": "@nodejs",
-      "type": "twitter",
-      "type_properties": {
-        "max_search_tweets": 250
-      },
-      "channels": [
-        "free-dev",
-        "supporter-dev"
-      ]
-    },
-    {
-      "ad_index": 1,
-      "url": "@official_php",
-      "type": "twitter",
-      "type_properties": {
-        "max_search_tweets": 250
-      },
-      "channels": [
-        "free-dev",
-        "supporter-dev"
-      ]
-    },
-    {
-      "ad_index": 1,
-      "url": "https://portswigger.net/blog/rss",
+      "url": "https://portswigger.net/daily-swig/rss",
       "type": "rss",
       "type_properties": {
         "max_rss_entries": 10
       },
       "channels": [
+        "free-security",
         "supporter-security"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://www.datadoghq.com/blog/index.xml",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 50
+      },
+      "channels": [
+        "free-security",
+        "supporter-security"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "programming",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 10,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "free-dev",
+        "supporter-dev"
       ]
     },
     {
@@ -167,17 +573,6 @@
     },
     {
       "ad_index": 1,
-      "url": "https://feeds.feedburner.com/TheHackersNews?format=xml",
-      "type": "rss",
-      "type_properties": {
-        "max_rss_entries": 20
-      },
-      "channels": [
-        "supporter-security"
-      ]
-    },
-    {
-      "ad_index": 1,
       "url": "https://aws.amazon.com/blogs/devops/feed/",
       "type": "rss",
       "type_properties": {
@@ -185,17 +580,6 @@
       },
       "channels": [
         "free-dev-ops",
-        "supporter-dev-ops"
-      ]
-    },
-    {
-      "ad_index": 1,
-      "url": "https://devops.com/category/blogs/feed/",
-      "type": "rss",
-      "type_properties": {
-        "max_rss_entries": 20
-      },
-      "channels": [
         "supporter-dev-ops"
       ]
     },
@@ -225,31 +609,6 @@
     },
     {
       "ad_index": 1,
-      "url": "https://devblogs.microsoft.com/performance-diagnostics/feed/",
-      "type": "rss",
-      "type_properties": {
-        "max_rss_entries": 10
-      },
-      "channels": [
-        "supporter-systems"
-      ]
-    },
-    {
-      "ad_index": 1,
-      "url": "https://devblogs.microsoft.com/commandline/feed/",
-      "type": "rss",
-      "type_properties": {
-        "max_rss_entries": 10
-      },
-      "channels": [
-        "supporter-dev",
-        "supporter-cloud",
-        "supporter-dev-ops",
-        "supporter-systems"
-      ]
-    },
-    {
-      "ad_index": 1,
       "url": "https://aws.amazon.com/blogs/database/feed/",
       "type": "rss",
       "type_properties": {
@@ -262,17 +621,6 @@
     },
     {
       "ad_index": 1,
-      "url": "https://www.bleepingcomputer.com/feed/",
-      "type": "rss",
-      "type_properties": {
-        "max_rss_entries": 10
-      },
-      "channels": [
-        "supporter-security"
-      ]
-    },
-    {
-      "ad_index": 1,
       "url": "https://feeds.arstechnica.com/arstechnica/gadgets?format=xml",
       "type": "rss",
       "type_properties": {
@@ -281,98 +629,6 @@
       "channels": [
         "free-systems",
         "supporter-systems"
-      ]
-    },
-    {
-      "ad_index": 1,
-      "url": "https://www.fireeye.com/blog/threat-research/_jcr_content.feed",
-      "type": "rss",
-      "type_properties": {
-        "max_rss_entries": 10
-      },
-      "channels": [
-        "supporter-security"
-      ]
-    },
-    {
-      "ad_index": 1,
-      "url": "https://levelup.gitconnected.com/feed",
-      "type": "rss",
-      "type_properties": {
-        "max_rss_entries": 25
-      },
-      "channels": [
-        "supporter-dev"
-      ]
-    },
-    {
-      "ad_index": 1,
-      "url": "@mariadb_org",
-      "type": "twitter",
-      "type_properties": {
-        "max_search_tweets": 250
-      },
-      "channels": [
-        "free-database",
-        "supporter-database"
-      ]
-    },
-    {
-      "ad_index": 1,
-      "url": "@MySQL",
-      "type": "twitter",
-      "type_properties": {
-        "max_search_tweets": 250
-      },
-      "channels": [
-        "free-database",
-        "supporter-database"
-      ]
-    },
-    {
-      "ad_index": 1,
-      "url": "@awscloud",
-      "type": "twitter",
-      "type_properties": {
-        "max_search_tweets": 250
-      },
-      "channels": [
-        "free-cloud",
-        "supporter-cloud"
-      ]
-    },
-    {
-      "ad_index": 1,
-      "url": "@Docker",
-      "type": "twitter",
-      "type_properties": {
-        "max_search_tweets": 250
-      },
-      "channels": [
-        "supporter-dev-ops"
-      ]
-    },
-    {
-      "ad_index": 1,
-      "url": "@Azure",
-      "type": "twitter",
-      "type_properties": {
-        "max_search_tweets": 250
-      },
-      "channels": [
-        "free-cloud",
-        "supporter-cloud"
-      ]
-    },
-    {
-      "ad_index": 1,
-      "url": "#cloudcomputing",
-      "type": "twitter",
-      "type_properties": {
-        "max_search_tweets": 250
-      },
-      "channels": [
-        "supporter-cloud"
       ]
     },
     {
