@@ -4,10 +4,10 @@ import traceback
 import random
 from multiprocessing import Process, Manager, Queue
 # Custom Modules
-from .feed_items.feed_item import FeedItem
-from.discord_helpers.discord_webhook import DiscordRoutes
 from .discord_helpers.discord_api_client import DiscordAPIClient
 from .exception_helpers.custom_exception_wrapper import CustomExceptionWrapper, ObjectListCustomExceptionWrapper
+from .feed_items.feed_item import FeedItem
+from .discord_helpers.discord_webhook import DiscordRoutes
 
 
 class Main():
@@ -26,9 +26,9 @@ class Main():
     def __shuffle_msgs_by_channel(self, dirty_msg_list: list) -> list:
         sorted_msgs = {}
         result = []
-        routes = DiscordRoutes()
+        channels = DiscordRoutes().get_all_channels()
 
-        for channel in  routes.get_all_channels:
+        for channel in channels:
             sorted_msgs[channel] = []
 
         for msg in dirty_msg_list:

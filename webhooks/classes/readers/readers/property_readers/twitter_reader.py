@@ -45,10 +45,12 @@ class TwitterReader(PropertyReaderAbstract):
         return
 
     def __is_current_tweet(self, tweet) -> bool:
+        # Just case our time zones are mixed, checked for posts the next day 
         today = datetime.date.today()
+        tomarrow = today + datetime.timedelta(days=1)
         post_date = tweet.created_at.date()
 
-        if today == post_date:
+        if today == post_date or tomarrow == post_date:
             return True
 
         return False

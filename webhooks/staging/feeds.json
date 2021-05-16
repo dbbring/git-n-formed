@@ -14,6 +14,18 @@
     },
     {
       "ad_index": 1,
+      "url": "#coding",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 25
+      },
+      "channels": [
+        "free-dev",
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
       "url": "programming",
       "type": "reddit",
       "type_properties": {

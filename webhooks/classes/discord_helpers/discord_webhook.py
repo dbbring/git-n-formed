@@ -90,8 +90,8 @@ class DiscordRoutes(object):
         }
         return
 
-    def get_all_channels(self) -> list:
-        return self._channels.keys()
+    def get_all_channels(self) -> set:
+        return set(self._channels.keys())
 
     def get_channel_id(self, channel: str) -> int:
         return int(self._channels[channel]['chan_id'])
