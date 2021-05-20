@@ -303,19 +303,7 @@
       },
       "channels": [
         "supporter-security"
-      ]
-    },
-    {
-      "ad_index": 1,
-      "url": "https://threatpost.com/category/cloud-security/feed/",
-      "type": "rss",
-      "type_properties": {
-        "max_rss_entries": 10
-      },
-      "channels": [
-        "supporter-security",
-        "supporter-cloud"
-      ]
+        ]
     },
     {
       "ad_index": 1,
@@ -330,13 +318,24 @@
     },
     {
       "ad_index": 1,
+      "url": "https://threatpost.com/category/cloud-security/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 25
+      },
+      "channels": [
+        "supporter-security",
+        "supporter-cloud"
+      ]
+    },
+    {
+      "ad_index": 1,
       "url": "https://devblogs.microsoft.com/commandline/feed/",
       "type": "rss",
       "type_properties": {
         "max_rss_entries": 10
       },
       "channels": [
-        "supporter-dev",
         "supporter-cloud",
         "supporter-dev-ops",
         "supporter-systems"
