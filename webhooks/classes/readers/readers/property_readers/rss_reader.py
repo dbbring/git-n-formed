@@ -42,12 +42,11 @@ class RSSReader(PropertyReaderAbstract):
             "Could not find valid date attribute in RSS feed.")
 
     def __is_current_content(self, content) -> bool:
-        # Just case our time zones are mixed, checked for posts the next day
         today = datetime.date.today()
-        tomarrow = today + datetime.timedelta(days=1)
         post_date = self.__get_content_date(content)
+        post_date = post_date.date()
 
-        if today == post_date or tomarrow == post_date:
+        if post_date >= today:
             return True
 
         return False
