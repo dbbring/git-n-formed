@@ -26,11 +26,22 @@
     },
     {
       "ad_index": 1,
+      "url": "#bugbountytips",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 25
+      },
+      "channels": [
+        "free-security"
+      ]
+    },
+    {
+      "ad_index": 1,
       "url": "programming",
       "type": "reddit",
       "type_properties": {
-        "ups": 10,
-        "max_reddit_posts": 10
+        "ups": 1,
+        "max_reddit_posts": 25
       },
       "channels": [
         "free-dev"

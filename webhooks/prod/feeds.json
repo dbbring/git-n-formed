@@ -296,6 +296,29 @@
     },
     {
       "ad_index": 1,
+      "url": "https://threatpost.com/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 10
+      },
+      "channels": [
+        "supporter-security"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://threatpost.com/category/cloud-security/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 10
+      },
+      "channels": [
+        "supporter-security",
+        "supporter-cloud"
+      ]
+    },
+    {
+      "ad_index": 1,
       "url": "https://levelup.gitconnected.com/feed",
       "type": "rss",
       "type_properties": {
