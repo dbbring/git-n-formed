@@ -36,7 +36,7 @@ class RSSReader(PropertyReaderAbstract):
         if hasattr(content, 'updated'):
             date_str = StringUtils.extract_date(content.updated)
             if date_str != '':
-                return datetime.datetime.strptime(date_str, '%Y-%m-%d')
+                return datetime.datetime.strptime(date_str, '%Y-%m-%d').date()
 
         raise DateNotFoundRSSReaderException(
             "Could not find valid date attribute in RSS feed.")
@@ -44,7 +44,6 @@ class RSSReader(PropertyReaderAbstract):
     def __is_current_content(self, content) -> bool:
         today = datetime.date.today()
         post_date = self.__get_content_date(content)
-        post_date = post_date.date()
 
         if post_date >= today:
             return True
@@ -60,7 +59,7 @@ class RSSReader(PropertyReaderAbstract):
 
     def __parse_content(self) -> None:
         self.__get_latest_content()
-        self.post_items = filter(self._is_valid_link, self.post_items)
+        self.post_items = list(filter(self._is_valid_link, self.post_items))
         return None
 
     def _to_post_item(self, content_item) -> PostItem:

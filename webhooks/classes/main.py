@@ -26,7 +26,7 @@ class Main():
         self.__existing_links = discord_api.get_existing_links()
         return
 
-    def sanitize_msgs_by_channel(self, channel: str, results_queue: Queue) -> None:
+    def sanitize_msgs_by_channel(self, channel: str) -> list:
         chan_msgs = []
 
         for msg in self.__dirty_msgs:
@@ -39,29 +39,15 @@ class Main():
         for x in range(self.NUMBER_OF_SHUFFLES):
             random.shuffle(chan_msgs)
 
-        results_queue.put(chan_msgs)
-        return None
+        return chan_msgs
 
-    def __sanitize_msgs(self) -> list:
+    def __sanitize_msgs(self) -> None:
         channels = DiscordRoutes().get_all_channels()
-        processes = []
-        shuffled_msgs = []
-        output_queue = Queue()
 
         for channel in channels:
-            proc = Process(target=self.sanitize_msgs_by_channel, args=(
-                channel, output_queue))
+            self.__clean_msgs += self.sanitize_msgs_by_channel(channel)
 
-            proc.start()
-            processes.append(proc)
-
-        for process in processes:
-            process.join()
-
-        while output_queue.qsize() != 0:
-            shuffled_msgs += output_queue.get()
-
-        return shuffled_msgs
+        return None
 
     def process_feed(self, feed: dict, output_queue: Queue, err_list: list):
         try:
@@ -105,10 +91,16 @@ class Main():
         return feed
 
     def finalize(self):
-        self.__clean_msgs = self.__sanitize_msgs()
+        processes = []
+        self.__sanitize_msgs()
 
         for msg in self.__clean_msgs:
-            msg.post()
+            proc = Process(target=msg.post)
+            proc.start()
+            processes.append(proc)
+
+        for proc in processes:
+            proc.join()
         return
 
     def run(self, feeds: dict):

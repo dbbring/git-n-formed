@@ -62,7 +62,7 @@ class TwitterReader(PropertyReaderAbstract):
 
     def __parse_content(self) -> None:
         self.__get_latest_content()
-        self.post_items = filter(self._is_valid_link, self.post_items)
+        self.post_items = list(filter(self._is_valid_link, self.post_items))
         return None
 
     def _is_valid_link(self, post_item: PostItem) -> bool:
