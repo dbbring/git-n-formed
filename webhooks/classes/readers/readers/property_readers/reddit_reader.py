@@ -25,6 +25,8 @@ class RedditReader(PropertyReaderAbstract):
 
     def __init__(self):
         super().__init__()
+        self._content_list = []
+        self.post_items = []
         self.properties = {
             "ups": 0,
             "max_reddit_posts": 25

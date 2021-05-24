@@ -34,5 +34,5 @@ class BasicAdReader(PropertyReaderAbstract):
 
     def fetch(self, url: str) -> BasicAdReader:
         self.post_items.append(self._to_post_item(url))
-        self.post_items = filter(self._is_valid_link, self.post_items)
+        self.post_items = list(filter(self._is_valid_link, self.post_items))
         return self
