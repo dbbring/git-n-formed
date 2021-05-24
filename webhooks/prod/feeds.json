@@ -303,7 +303,7 @@
       },
       "channels": [
         "supporter-security"
-        ]
+      ]
     },
     {
       "ad_index": 1,
@@ -372,17 +372,6 @@
       },
       "channels": [
         "supporter-security"
-      ]
-    },
-    {
-      "ad_index": 1,
-      "url": "#cloudcomputing",
-      "type": "twitter",
-      "type_properties": {
-        "max_search_tweets": 250
-      },
-      "channels": [
-        "supporter-cloud"
       ]
     },
     {

@@ -13,17 +13,6 @@
     },
     {
       "ad_index": 1,
-      "url": "https://css-tricks.com/feed/",
-      "type": "rss",
-      "type_properties": {
-        "max_rss_entries": 20
-      },
-      "channels": [
-        "supporter-dev"
-      ]
-    },
-    {
-      "ad_index": 1,
       "url": "cybersecurity",
       "type": "reddit",
       "type_properties": {
@@ -372,17 +361,6 @@
       },
       "channels": [
         "supporter-security"
-      ]
-    },
-    {
-      "ad_index": 1,
-      "url": "#cloudcomputing",
-      "type": "twitter",
-      "type_properties": {
-        "max_search_tweets": 250
-      },
-      "channels": [
-        "supporter-cloud"
       ]
     },
     {
