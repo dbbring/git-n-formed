@@ -1,51 +1,60 @@
 # Global Modules
 import sys
 import traceback
-import random
 from multiprocessing import Process, Manager, Queue
 # Custom Modules
 from .discord_helpers.discord_api_client import DiscordAPIClient
 from .exception_helpers.custom_exception_wrapper import CustomExceptionWrapper, ObjectListCustomExceptionWrapper
 from .feed_items.feed_item import FeedItem
 from .discord_helpers.discord_webhook import DiscordRoutes
+from .utils.int_utils import IntUtils
 
 
 class Main():
     NUMBER_OF_SHUFFLES = 5
     __existing_links: dict = {}
     __debug: bool = False
-    __dirty_msgs: list = []
-    __clean_msgs: list = []
+    __msgs: list = []
 
     def __init__(self, debug: bool = False) -> None:
         discord_api = DiscordAPIClient()
 
         self.__debug = debug
-        self.__dirty_msgs = []
-        self.__clean_msgs = []
+        self.__msgs = []
         self.__existing_links = discord_api.get_existing_links()
         return
 
-    def sanitize_msgs_by_channel(self, channel: str) -> list:
+    def __filter_msgs_by_chan(self, channel: str, all_msgs: list) -> list:
         chan_msgs = []
-
-        for msg in self.__dirty_msgs:
+        for msg in all_msgs:
             if channel == msg.channel:
                 chan_msgs.append(msg)
+        return chan_msgs
+
+    def post_by_channel(self, channel: str, all_msgs: list, num_of_shuffles: int) -> None:
+        chan_msgs = self.__filter_msgs_by_chan(channel, all_msgs)
+        indexes = IntUtils.random_list(len(chan_msgs), num_of_shuffles)
 
         if len(chan_msgs) == 0:
             return None
 
-        for x in range(self.NUMBER_OF_SHUFFLES):
-            random.shuffle(chan_msgs)
+        for index in indexes:
+            chan_msgs[index].post()
 
-        return chan_msgs
+        return None
 
-    def __sanitize_msgs(self) -> None:
+    def finalize(self):
         channels = DiscordRoutes().get_all_channels()
+        processes = []
 
         for channel in channels:
-            self.__clean_msgs += self.sanitize_msgs_by_channel(channel)
+            proc = Process(target=self.post_by_channel, args=(
+                channel, self.__msgs, self.NUMBER_OF_SHUFFLES))
+            proc.start()
+            processes.append(proc)
+
+        for proc in processes:
+            proc.join()
 
         return None
 
@@ -90,19 +99,6 @@ class Main():
         feed['ad'] = ad
         return feed
 
-    def finalize(self):
-        processes = []
-        self.__sanitize_msgs()
-
-        for msg in self.__clean_msgs:
-            proc = Process(target=msg.post)
-            proc.start()
-            processes.append(proc)
-
-        for proc in processes:
-            proc.join()
-        return
-
     def run(self, feeds: dict):
         feed_errors = ObjectListCustomExceptionWrapper('feed_errors')
         results = Queue()
@@ -124,7 +120,7 @@ class Main():
                     processes.append(p)
 
             while results.qsize() != 0:
-                self.__dirty_msgs += results.get()
+                self.__msgs += results.get()
 
             for p in processes:
                 p.join()
