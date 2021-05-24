@@ -1,7 +1,7 @@
 # Global Modules
 from abc import ABC, abstractmethod, abstractproperty
 # Custom Modules
-from ...post_items.post_item import PostItem
+from ...post_items.items import PostItem
 
 
 class ReaderAbstract(ABC):

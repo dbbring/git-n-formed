@@ -5,7 +5,7 @@ import datetime
 import tweepy
 # Custom Modules
 from ._property_reader_abstract import PropertyReaderAbstract
-from ....post_items.post_item import PostItem
+from ....post_items.items import PostItem
 from ....utils.string_utils import StringUtils
 
 
@@ -17,7 +17,7 @@ class TwitterReader(PropertyReaderAbstract):
 
     __api = None
     # List[Post_Items]
-    post_items = []
+    post_items: filter = []
     # List[content_items] content items being whatever native structure the reader gets
     _content_list: list = []
     # Optionable args from feed json
@@ -48,7 +48,7 @@ class TwitterReader(PropertyReaderAbstract):
         today = datetime.date.today()
         post_date = tweet.created_at.date()
 
-        if today == post_date:
+        if post_date >= today:
             return True
 
         return False
@@ -62,7 +62,7 @@ class TwitterReader(PropertyReaderAbstract):
 
     def __parse_content(self) -> None:
         self.__get_latest_content()
-        self.post_items = filter(self._is_valid_link, self.post_items)
+        self.post_items = list(filter(self._is_valid_link, self.post_items))
         return None
 
     def _is_valid_link(self, post_item: PostItem) -> bool:

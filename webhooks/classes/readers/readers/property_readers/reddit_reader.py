@@ -5,7 +5,7 @@ import os
 import datetime
 # Custom Modules
 from ._property_reader_abstract import PropertyReaderAbstract
-from ....post_items.post_item import PostItem
+from ....post_items.items import PostItem
 from ....utils.string_utils import StringUtils
 
 
@@ -25,6 +25,8 @@ class RedditReader(PropertyReaderAbstract):
 
     def __init__(self):
         super().__init__()
+        self._content_list = []
+        self.post_items = []
         self.properties = {
             "ups": 0,
             "max_reddit_posts": 25
@@ -40,7 +42,7 @@ class RedditReader(PropertyReaderAbstract):
         today = datetime.date.today()
         post_date = datetime.datetime.fromtimestamp(unix_datetime).date()
 
-        if today == post_date:
+        if post_date >= today:
             return True
 
         return False
@@ -67,7 +69,7 @@ class RedditReader(PropertyReaderAbstract):
 
     def _parse_content(self) -> None:
         self.__get_latest_content()
-        self.post_items = filter(self._is_valid_link, self.post_items)
+        self.post_items = list(filter(self._is_valid_link, self.post_items))
         return None
 
     def fetch(self, url: str) -> RedditReader:
