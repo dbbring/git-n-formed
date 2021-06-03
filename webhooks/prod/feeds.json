@@ -2,6 +2,266 @@
   "feeds": [
     {
       "ad_index": 1,
+      "url": "http://www.thatjeffsmith.com/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 25
+      },
+      "channels": [
+        "supporter-database"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://www.singlestore.com/blog/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 25
+      },
+      "channels": [
+        "supporter-database"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://www.sqlshack.com/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 25
+      },
+      "channels": [
+        "supporter-database"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://blog.couchbase.com/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 25
+      },
+      "channels": [
+        "free-database",
+        "supporter-database"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://planet.mysql.com/rss20.xml",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 25
+      },
+      "channels": [
+        "free-database",
+        "supporter-database"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://blogs.oracle.com/database/rss",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 25
+      },
+      "channels": [
+        "free-database",
+        "supporter-database"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "scala",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "FlutterDev",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "mongodb",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 1,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-database"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "ruby",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 10,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "hacking",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-security"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "javascript",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 10,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "mysql",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 2,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-database"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "java",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 2,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "rust",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 2,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "dotnet",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 2,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "rails",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 2,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "PostgreSQL",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 2,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-database"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "PHP",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 2,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "node",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 2,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "SQL",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 1,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://feeds.megaphone.fm/darknetdiaries",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 50
+      },
+      "channels": [
+        "supporter-security"
+      ]
+    },
+    {
+      "ad_index": 1,
       "url": "#CICD",
       "type": "twitter",
       "type_properties": {
@@ -87,17 +347,6 @@
       },
       "channels": [
         "supporter-cloud"
-      ]
-    },
-    {
-      "ad_index": 1,
-      "url": "https://mcpmag.com/rss-feeds/news.aspx",
-      "type": "rss",
-      "type_properties": {
-        "max_rss_entries": 50
-      },
-      "channels": [
-        "supporter-systems"
       ]
     },
     {
@@ -409,17 +658,6 @@
     },
     {
       "ad_index": 1,
-      "url": "https://hackaday.com/blog/feed/",
-      "type": "rss",
-      "type_properties": {
-        "max_rss_entries": 50
-      },
-      "channels": [
-        "supporter-security"
-      ]
-    },
-    {
-      "ad_index": 1,
       "url": "googlecloud",
       "type": "reddit",
       "type_properties": {
@@ -503,7 +741,7 @@
     },
     {
       "ad_index": 1,
-      "url": "hhttps://blog.rust-lang.org/feed",
+      "url": "https://blog.rust-lang.org/feed",
       "type": "rss",
       "type_properties": {
         "max_rss_entries": 50
@@ -608,6 +846,7 @@
         "max_rss_entries": 50
       },
       "channels": [
+        "free-dev",
         "supporter-dev"
       ]
     },
@@ -703,6 +942,7 @@
         "max_reddit_posts": 100
       },
       "channels": [
+        "free-database",
         "supporter-database"
       ]
     },
@@ -858,7 +1098,8 @@
         "max_search_tweets": 250
       },
       "channels": [
-        "supporter-cloud"
+        "supporter-cloud",
+        "supporter-dev-ops"
       ]
     },
     {
@@ -869,7 +1110,10 @@
         "max_search_tweets": 250
       },
       "channels": [
-        "supporter-cloud"
+        "free-cloud",
+        "free-dev-ops",
+        "supporter-cloud",
+        "supporter-dev-ops"
       ]
     },
     {
@@ -913,6 +1157,7 @@
         "max_rss_entries": 25
       },
       "channels": [
+        "free-dev",
         "supporter-dev"
       ]
     },
@@ -1004,6 +1249,7 @@
         "max_rss_entries": 20
       },
       "channels": [
+        "free-dev-ops",
         "supporter-dev-ops"
       ]
     },
@@ -1141,7 +1387,7 @@
       "url": "https://absoluteappsec.com/rss.xml",
       "type": "rss",
       "type_properties": {
-        "max_rss_entries": 1000
+        "max_rss_entries": 10
       },
       "channels": [
         "free-security",
