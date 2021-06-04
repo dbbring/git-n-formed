@@ -2,6 +2,18 @@
   "feeds": [
     {
       "ad_index": 1,
+      "url": "https://blog.includesecurity.com/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 25
+      },
+      "channels": [
+        "free-security",
+        "supporter-security"
+      ]
+    },
+    {
+      "ad_index": 1,
       "url": "http://www.thatjeffsmith.com/feed/",
       "type": "rss",
       "type_properties": {
