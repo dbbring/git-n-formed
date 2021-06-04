@@ -2,7 +2,758 @@
   "feeds": [
     {
       "ad_index": 1,
-      "url": "https://css-tricks.com/feed/",
+      "url": "https://blog.includesecurity.com/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 25
+      },
+      "channels": [
+        "free-security",
+        "supporter-security"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "http://www.thatjeffsmith.com/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 25
+      },
+      "channels": [
+        "supporter-database"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://www.singlestore.com/blog/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 25
+      },
+      "channels": [
+        "supporter-database"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://www.sqlshack.com/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 25
+      },
+      "channels": [
+        "supporter-database"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://blog.couchbase.com/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 25
+      },
+      "channels": [
+        "free-database",
+        "supporter-database"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://planet.mysql.com/rss20.xml",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 25
+      },
+      "channels": [
+        "free-database",
+        "supporter-database"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://blogs.oracle.com/database/rss",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 25
+      },
+      "channels": [
+        "free-database",
+        "supporter-database"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "scala",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "FlutterDev",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "mongodb",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 1,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-database"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "ruby",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 10,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "hacking",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-security"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "javascript",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 10,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "mysql",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 2,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-database"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "java",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 2,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "rust",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 2,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "dotnet",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 2,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "rails",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 2,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "PostgreSQL",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 2,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-database"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "PHP",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 2,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "node",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 2,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "SQL",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 1,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://feeds.megaphone.fm/darknetdiaries",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 50
+      },
+      "channels": [
+        "supporter-security"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "#CICD",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "supporter-dev-ops"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "#jenkins",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "supporter-dev-ops"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "Cloud",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-cloud"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://cloudacademy.com/blog/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 50
+      },
+      "channels": [
+        "supporter-cloud"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://www.techrepublic.com/rssfeeds/topic/cloud/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 50
+      },
+      "channels": [
+        "supporter-cloud"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://cloudtweaks.com/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 50
+      },
+      "channels": [
+        "supporter-cloud"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://cloudcomputing-news.net/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 50
+      },
+      "channels": [
+        "supporter-cloud"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://www.thecloudcast.net/feeds/posts/default",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 50
+      },
+      "channels": [
+        "supporter-cloud"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "#sysadmin",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "supporter-systems"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "@linuxtoday",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "supporter-systems"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "@nixcraft",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "supporter-systems"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "@MSTCommunity",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "supporter-systems"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://mcpmag.com/rss-feeds/news.aspx",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 50
+      },
+      "channels": [
+        "supporter-systems"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "kubernetes",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-dev-ops"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "freebsd",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-systems"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "computerforensics",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-security"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "commandline",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-systems"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "cableporn",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-systems"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "apple",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-systems"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "Windows10",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-systems"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "storage",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-systems"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "pcmasterrace",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-systems"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "Ubuntu",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-systems"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "golang",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "Python",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "techsupportgore",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-systems"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "linuxmasterrace",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-systems"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "networking",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-systems"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "talesfromtechsupport",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-systems"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "SysAdminBlogs",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-systems"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "linuxadmin",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-systems"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "PowerShell",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-systems"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "Sysadminhumor",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-systems"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "homelab",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-systems"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "googlecloud",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-cloud",
+        "supporter-dev-ops"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "AZURE",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-cloud",
+        "supporter-dev-ops"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "aws",
+      "type": "reddit",
+      "type_properties": {
+        "ups": 5,
+        "max_reddit_posts": 100
+      },
+      "channels": [
+        "supporter-cloud",
+        "supporter-dev-ops"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "@angular",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "@reactjs",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "@ThePSF",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "@golang",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://blog.rust-lang.org/feed",
       "type": "rss",
       "type_properties": {
         "max_rss_entries": 50
@@ -13,13 +764,113 @@
     },
     {
       "ad_index": 1,
-      "url": "https://css-tricks.com/feed/",
-      "type": "rss",
+      "url": "@aspnet",
+      "type": "twitter",
       "type_properties": {
-        "max_rss_entries": 20
+        "max_search_tweets": 250
       },
       "channels": [
         "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "@InfosecurityMag",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "supporter-security"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "@vuejs",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "@laravelphp",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "@official_php",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "@nodejs",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://sick.codes/category/security/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 50
+      },
+      "channels": [
+        "supporter-security"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://www.technologyreview.com/topic/computing/cybersecurity/feed",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 50
+      },
+      "channels": [
+        "supporter-security"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://css-tricks.com/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 50
+      },
+      "channels": [
+        "free-dev",
+        "supporter-dev"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://www.technologyreview.com/topic/computing/cloud-computing/feed",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 50
+      },
+      "channels": [
+        "supporter-cloud"
       ]
     },
     {
@@ -103,6 +954,7 @@
         "max_reddit_posts": 100
       },
       "channels": [
+        "free-database",
         "supporter-database"
       ]
     },
@@ -258,7 +1110,8 @@
         "max_search_tweets": 250
       },
       "channels": [
-        "supporter-cloud"
+        "supporter-cloud",
+        "supporter-dev-ops"
       ]
     },
     {
@@ -269,7 +1122,10 @@
         "max_search_tweets": 250
       },
       "channels": [
-        "supporter-cloud"
+        "free-cloud",
+        "free-dev-ops",
+        "supporter-cloud",
+        "supporter-dev-ops"
       ]
     },
     {
@@ -313,6 +1169,7 @@
         "max_rss_entries": 25
       },
       "channels": [
+        "free-dev",
         "supporter-dev"
       ]
     },
@@ -339,28 +1196,6 @@
         "supporter-cloud",
         "supporter-dev-ops",
         "supporter-systems"
-      ]
-    },
-    {
-      "ad_index": 1,
-      "url": "@official_php",
-      "type": "twitter",
-      "type_properties": {
-        "max_search_tweets": 250
-      },
-      "channels": [
-        "supporter-dev"
-      ]
-    },
-    {
-      "ad_index": 1,
-      "url": "@nodejs",
-      "type": "twitter",
-      "type_properties": {
-        "max_search_tweets": 250
-      },
-      "channels": [
-        "supporter-dev"
       ]
     },
     {
@@ -426,6 +1261,7 @@
         "max_rss_entries": 20
       },
       "channels": [
+        "free-dev-ops",
         "supporter-dev-ops"
       ]
     },
@@ -563,7 +1399,7 @@
       "url": "https://absoluteappsec.com/rss.xml",
       "type": "rss",
       "type_properties": {
-        "max_rss_entries": 1000
+        "max_rss_entries": 10
       },
       "channels": [
         "free-security",

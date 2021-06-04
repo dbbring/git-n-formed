@@ -1,4 +1,5 @@
 # Global Modules
+import json
 import sys
 import traceback
 from multiprocessing import Process, Manager, Queue
@@ -15,13 +16,17 @@ class Main():
     __existing_links: dict = {}
     __debug: bool = False
     __msgs: list = []
+    feeds: dict = {}
 
-    def __init__(self, debug: bool = False) -> None:
+    def __init__(self, feed_path: str, debug: bool = False) -> None:
         discord_api = DiscordAPIClient()
 
         self.__debug = debug
         self.__msgs = []
+        self.feeds = {}
         self.__existing_links = discord_api.get_existing_links()
+        with open(feed_path) as f:
+            self.feeds = json.load(f)
         return
 
     def __filter_msgs_by_chan(self, channel: str, all_msgs: list) -> list:
@@ -99,16 +104,17 @@ class Main():
         feed['ad'] = ad
         return feed
 
-    def run(self, feeds: dict):
-        feed_errors = ObjectListCustomExceptionWrapper('feed_errors')
+    def run(self):
+        feed_errors = ObjectListCustomExceptionWrapper(
+            'feed_errors', self.__debug)
         results = Queue()
         processes = []
 
         with Manager() as manager:
             feed_errors.custom_exceptions = manager.list([])
 
-            for feed in feeds['feeds']:
-                complete_feed = self.setup_feed(feed, feeds['ads'])
+            for feed in self.feeds['feeds']:
+                complete_feed = self.setup_feed(feed, self.feeds['ads'])
 
                 if self.__debug:
                     self.process_feed(
