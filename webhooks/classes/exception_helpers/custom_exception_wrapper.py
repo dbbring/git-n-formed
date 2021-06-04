@@ -1,6 +1,7 @@
 # Global Modules
 import os
 import datetime
+from honeybadger import honeybadger
 # Custom Modules
 
 
@@ -44,17 +45,23 @@ class CustomExceptionWrapper(Exception):
 class ObjectListCustomExceptionWrapper(object):
 
     __log_file: str = ''
+    __debug: bool = False
     custom_exceptions: list = []  # List of CustomExceptionWrapper
 
-    def __init__(self, log_name: str) -> None:
+    def __init__(self, log_name: str, debug: bool = False) -> None:
         super().__init__()
         self.custom_exceptions = []
         self.__log_file = os.getcwd() + '\\' + log_name + '.log'
+        self.__debug = debug
         return
 
     def save(self) -> None:
         if len(self.custom_exceptions) > 0:
-            with open(self.__log_file, 'a+') as f:
+            if self.__debug:
+                with open(self.__log_file, 'a+') as f:
+                    for custom_except in self.custom_exceptions:
+                        f.write(custom_except.format_for_log())
+            else:
                 for custom_except in self.custom_exceptions:
-                    f.write(custom_except.format_for_log())
+                    honeybadger.notify(custom_except.format_for_log())
         return

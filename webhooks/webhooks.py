@@ -1,6 +1,5 @@
 # Global Modules
 import argparse
-import json
 import os
 import sys
 import traceback
@@ -23,32 +22,24 @@ if __name__ == '__main__':
                         action='store_true', dest='debug')
     args = parser.parse_args()
 
-    main_errors = ObjectListCustomExceptionWrapper('main_errors')
+    main_errors = ObjectListCustomExceptionWrapper('main_errors', args.debug)
 
     try:
         load_dotenv(dotenv_path=os.path.dirname(
             __file__) + '/' + args.env + "/.env")
-        honeybadger.configure(os.getenv('HONEYBADGER_API_TOKEN'))
-
+        honeybadger.configure(api_key=os.getenv('HONEYBADGER_API_TOKEN'))
         feed_path = os.path.dirname(__file__) + '/' + args.env + '/feeds.json'
-        with open(feed_path) as f:
-            feeds = json.load(f)
 
-        main = Main(args.debug)
-
-        # main.run(feeds)
-        # main.finalize()
+        main = Main(feed_path, args.debug)
+        main.run()
+        main.finalize()
     except Exception as e:
-        if args.debug:
-            tracebk = sys.exc_info()
-            err = CustomExceptionWrapper()
-            err.orig_exception = e.with_traceback(tracebk[2])
-            err.stack_trace = "Stack Trace:\n{}".format(
-                "".join(traceback.format_exception(type(e), e, e.__traceback__)))
+        tracebk = sys.exc_info()
+        err = CustomExceptionWrapper()
+        err.orig_exception = e.with_traceback(tracebk[2])
+        err.stack_trace = "Stack Trace:\n{}".format(
+            "".join(traceback.format_exception(type(e), e, e.__traceback__)))
 
-            main_errors.custom_exceptions.append(err)
-        else:
-            honeybadger.notify(
-                e, context={'env': args.env, 'feed path': feed_path, 'feeds': feeds})
+        main_errors.custom_exceptions.append(err)
 
     main_errors.save()
