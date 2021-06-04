@@ -25,10 +25,12 @@ if __name__ == '__main__':
     main_errors = ObjectListCustomExceptionWrapper('main_errors', args.debug)
 
     try:
-        load_dotenv(dotenv_path=os.path.dirname(
-            __file__) + '/' + args.env + "/.env")
+        curr_path = os.path.dirname(__file__)
+        env_path = os.path.join(curr_path, args.env, '.env')
+        feed_path = os.path.join(curr_path, args.env, 'feeds.json')
+
+        load_dotenv(dotenv_path=env_path)
         honeybadger.configure(api_key=os.getenv('HONEYBADGER_API_TOKEN'))
-        feed_path = os.path.dirname(__file__) + '/' + args.env + '/feeds.json'
 
         main = Main(feed_path, args.debug)
         main.run()
