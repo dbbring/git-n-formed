@@ -48,10 +48,10 @@ class ObjectListCustomExceptionWrapper(object):
     __debug: bool = False
     custom_exceptions: list = []  # List of CustomExceptionWrapper
 
-    def __init__(self, log_name: str, debug: bool = False) -> None:
+    def __init__(self, log_path: str, debug: bool = False) -> None:
         super().__init__()
         self.custom_exceptions = []
-        self.__log_file = os.getcwd() + '\\' + log_name + '.log'
+        self.__log_file = log_path
         self.__debug = debug
         return
 
