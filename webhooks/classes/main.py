@@ -1,7 +1,10 @@
 # Global Modules
 import json
+import honeybadger
+import requests
 import sys
 import traceback
+import os
 from multiprocessing import Process, Manager, Queue
 # Custom Modules
 from .discord_helpers.discord_api_client import DiscordAPIClient
@@ -15,19 +18,29 @@ class Main():
     NUMBER_OF_SHUFFLES = 5
     __existing_links: dict = {}
     __debug: bool = False
+    __mp: bool = False
     __msgs: list = []
     feeds: dict = {}
 
-    def __init__(self, feed_path: str, debug: bool = False) -> None:
+    def __init__(self, feed_path: str, enable_mp: bool = False, debug: bool = False) -> None:
         discord_api = DiscordAPIClient()
 
         self.__debug = debug
+        self.__mp = enable_mp
         self.__msgs = []
         self.feeds = {}
         self.__existing_links = discord_api.get_existing_links()
         with open(feed_path) as f:
             self.feeds = json.load(f)
         return
+
+    def __honeybadger_check_in(self, url: str) -> None:
+        r = requests.get(url)
+
+        if r.status_code != 200:
+            honeybadger.notify(
+                f'Honeybadger check-in failed with status code: {r.status_code}')
+        return None
 
     def __filter_msgs_by_chan(self, channel: str, all_msgs: list) -> list:
         chan_msgs = []
@@ -48,8 +61,7 @@ class Main():
 
         return None
 
-    def finalize(self):
-        channels = DiscordRoutes().get_all_channels()
+    def __finalize_mp(self, channels: list) -> None:
         processes = []
 
         for channel in channels:
@@ -60,6 +72,22 @@ class Main():
 
         for proc in processes:
             proc.join()
+
+        return None
+
+    def finalize(self):
+        channels = DiscordRoutes().get_all_channels()
+
+        if self.__mp and not self.__debug:
+            self.__finalize_mp(channels)
+        else:
+            for channel in channels:
+                self.post_by_channel(channel, self.__msgs,
+                                     self.NUMBER_OF_SHUFFLES)
+
+        if not self.__debug:
+            self.__honeybadger_check_in(
+                os.getenv('HONERYBADGER_END_SCRIPT_URL'))
 
         return None
 
@@ -104,26 +132,19 @@ class Main():
         feed['ad'] = ad
         return feed
 
-    def run(self):
-        feed_errors = ObjectListCustomExceptionWrapper(
-            'feed_errors', self.__debug)
-        results = Queue()
+    def __run_mp(self, results: Queue, err_list: ObjectListCustomExceptionWrapper) -> None:
         processes = []
 
         with Manager() as manager:
-            feed_errors.custom_exceptions = manager.list([])
+            err_list.custom_exceptions = manager.list([])
 
             for feed in self.feeds['feeds']:
                 complete_feed = self.setup_feed(feed, self.feeds['ads'])
 
-                if self.__debug:
-                    self.process_feed(
-                        complete_feed, results, feed_errors.custom_exceptions)
-                else:
-                    p = Process(target=self.process_feed, args=(
-                        complete_feed, results, feed_errors.custom_exceptions))
-                    p.start()
-                    processes.append(p)
+                p = Process(target=self.process_feed, args=(
+                    complete_feed, results, err_list.custom_exceptions))
+                p.start()
+                processes.append(p)
 
             while results.qsize() != 0:
                 self.__msgs += results.get()
@@ -131,5 +152,29 @@ class Main():
             for p in processes:
                 p.join()
 
-            feed_errors.save()
+            err_list.save()
         return
+
+    def run(self, feed_err_path: str) -> None:
+        feed_errors = ObjectListCustomExceptionWrapper(
+            feed_err_path, self.__debug)
+        results = Queue()
+
+        if not self.__debug:
+            self.__honeybadger_check_in(
+                os.getenv('HONERYBADGER_START_SCRIPT_URL'))
+
+        if self.__mp and not self.__debug:
+            self.__run_mp(results, feed_errors)
+            return None
+
+        for feed in self.feeds['feeds']:
+            complete_feed = self.setup_feed(feed, self.feeds['ads'])
+            self.process_feed(
+                complete_feed, results, feed_errors.custom_exceptions)
+
+        while results.qsize() != 0:
+            self.__msgs += results.get()
+
+        feed_errors.save()
+        return None
