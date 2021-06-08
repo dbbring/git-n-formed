@@ -96,6 +96,10 @@ class Main():
             msgs = []
             ad_msgs = []
 
+            if not self.__debug:
+                self.__honeybadger_check_in(
+                    os.getenv('HONERYBADGER_START_FEED_URL'))
+
             feed_item = FeedItem(feed)
             msgs = feed_item.get_feed().get_message_list()
 
@@ -111,6 +115,8 @@ class Main():
             tracebk = sys.exc_info()
             err = CustomExceptionWrapper()
             err.orig_exception = e.with_traceback(tracebk[2])
+            # we dont need the links for debugging clutters the log
+            feed['existing_links'] = {}
             err.func_args['feed'] = feed
             err.stack_trace = "Stack Trace:\n{}".format(
                 "".join(traceback.format_exception(type(e), e, e.__traceback__)))
@@ -172,6 +178,10 @@ class Main():
             complete_feed = self.setup_feed(feed, self.feeds['ads'])
             self.process_feed(
                 complete_feed, results, feed_errors.custom_exceptions)
+
+        if not self.__debug:
+            self.__honeybadger_check_in(
+                os.getenv('HONERYBADGER_FINISHED_FEEDS_URL'))
 
         while results.qsize() != 0:
             self.__msgs += results.get()
