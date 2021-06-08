@@ -8,32 +8,26 @@ from honeybadger import honeybadger
 # Custom Modules
 from classes.main import Main
 from classes.exception_helpers.custom_exception_wrapper import CustomExceptionWrapper, ObjectListCustomExceptionWrapper
+from classes.argparse_helpers.custom_argparse_wrapper import ArgparseWrapper
 
 
 # ======================================================================
-env_help_msg = "--env: Specifies the current running environment, either staging or prod."
-debug_help_msg = "--debug: Runs processes on single core. Only logs to file and doesn't send checkin requests to honeybadger."
-mp_help_msg = "--mp: Enables multiprocessing. Default is single process. Debug flag overrides MP."
 
 
 if __name__ == '__main__':
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--env", help=env_help_msg, type=str, dest='env')
-    parser.add_argument("--debug", help=debug_help_msg,
-                        action='store_true', dest='debug')
-    parser.add_argument("--mp", help=mp_help_msg,
-                        action='store_true', dest='mp')
-    args = parser.parse_args()
-
-    curr_path = os.path.dirname(__file__)
-    main_err_log = os.path.join(curr_path, 'main_errors.log')
-    feed_err_path = os.path.join(curr_path, 'feed_errors.log')
-    main_errors = ObjectListCustomExceptionWrapper(main_err_log, args.debug)
-
     try:
+        curr_path = os.path.dirname(__file__)
+
+        args = ArgparseWrapper(curr_path)
+        args = args.get_args()
+
+        main_err_log = os.path.join(curr_path, 'main_errors.log')
+        feed_err_path = os.path.join(curr_path, 'feed_errors.log')
         env_path = os.path.join(curr_path, args.env, '.env')
         feed_path = os.path.join(curr_path, args.env, 'feeds.json')
+
+        main_errors = ObjectListCustomExceptionWrapper(
+            main_err_log, args.debug)
 
         load_dotenv(dotenv_path=env_path)
         honeybadger.configure(api_key=os.getenv('HONEYBADGER_API_TOKEN'))
