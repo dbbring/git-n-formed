@@ -2,6 +2,116 @@
   "feeds": [
     {
       "ad_index": 1,
+      "url": "https://www.zdnet.com/topic/enterprise-software/rss.xml",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 50
+      },
+      "channels": [
+        "supporter-systems"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "hhttps://www.zdnet.com/topic/cloud/rss.xml",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 50
+      },
+      "channels": [
+        "supporter-cloud"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://www.zdnet.com/topic/apple/rss.xml",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 50
+      },
+      "channels": [
+        "supporter-systems"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://www.zdnet.com/topic/hardware/rss.xml",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 50
+      },
+      "channels": [
+        "supporter-systems"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://www.zdnet.com/topic/linux/rss.xml",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 50
+      },
+      "channels": [
+        "supporter-systems"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://www.zdnet.com/topic/microsoft/rss.xml",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 50
+      },
+      "channels": [
+        "supporter-systems"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://www.zdnet.com/topic/processors/rss.xml",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 50
+      },
+      "channels": [
+        "supporter-systems"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://www.zdnet.com/topic/security/rss.xml",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 50
+      },
+      "channels": [
+        "supporter-security"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://www.zdnet.com/blog/computers/rss.xml",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 50
+      },
+      "channels": [
+        "supporter-systems"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://www.helpnetsecurity.com/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 50
+      },
+      "channels": [
+        "supporter-security"
+      ]
+    },
+    {
+      "ad_index": 1,
       "url": "https://blog.includesecurity.com/feed/",
       "type": "rss",
       "type_properties": {
