@@ -2,6 +2,40 @@
   "feeds": [
     {
       "ad_index": 1,
+      "url": "https://snyk.io/blog/category/engineering/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 50
+      },
+      "channels": [
+        "supporter-security"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://snyk.io/blog/category/cloud-native-security/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 50
+      },
+      "channels": [
+        "supporter-security",
+        "supporter-cloud"
+      ]
+    },
+    {
+      "ad_index": 1,
+      "url": "https://snyk.io/blog/category/application-security/feed/",
+      "type": "rss",
+      "type_properties": {
+        "max_rss_entries": 50
+      },
+      "channels": [
+        "supporter-security"
+      ]
+    },
+    {
+      "ad_index": 1,
       "url": "https://www.zdnet.com/topic/enterprise-software/rss.xml",
       "type": "rss",
       "type_properties": {
