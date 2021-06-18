@@ -1,5 +1,17 @@
 {
   "feeds": [
+    
+    {
+      "ad_index": 1,
+      "url": "#cloud",
+      "type": "twitter",
+      "type_properties": {
+        "max_search_tweets": 250
+      },
+      "channels": [
+        "free-dev-ops"
+      ]
+    },
     {
       "ad_index": 1,
       "url": "https://aws.amazon.com/blogs/database/feed/",
@@ -52,7 +64,7 @@
         "free-cloud"
       ],
       "type_properties": {
-        "message": "\n\nPlease consider supporting gIT-n-Formed. Donating supports continued development of new features and provides continued support of operations!"
+        "message": "```fix\n           Need More? \n\n=============================================================================\nBecome a Supporter For $1/Mo And Gain Access To The True Power Of Knowledge. \n\n            Unlock 5 - 10 Times More Content Instantly! ```"
       }
     }
   ]
